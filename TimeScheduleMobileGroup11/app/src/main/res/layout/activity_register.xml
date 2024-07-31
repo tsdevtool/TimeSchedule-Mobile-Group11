@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="660dp"
+        android:background="@drawable/custom_bg_register"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:drawableLeft="@drawable/back_white_40"
+            android:drawablePadding="20dp"
+            android:padding="10dp"
+            android:text="Đăng ký"
+            android:textColor="#FFFFFFFF"
+            android:textSize="40sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Mã số sinh viên"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/icon_id"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Họ tên"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/person_26"
+            android:drawablePadding="10dp"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:backgroundTint="@color/white"
+                android:padding="15dp"
+                android:text="Nam"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+
+                android:backgroundTint="@color/white"
+                android:padding="15dp"
+                android:text="Nữ"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+        </RadioGroup>
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Ngày sinh"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/icons_schedule"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Mật khẩu"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/lock_26"
+            android:drawableRight="@drawable/eye_26"
+            android:drawablePadding="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Xác thực mật khẩu"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/lock_26"
+            android:drawableRight="@drawable/eye_26"
+            android:drawablePadding="10dp"/>
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:textColor="#FFFFFFFF"
+            android:padding="15dp"
+            android:text="Đăng ký"
+            android:textSize="24sp"
+            android:backgroundTint="#F28B4A"
+            app:strokeColor="#FFFFFFFF"
+            app:strokeWidth="3dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
