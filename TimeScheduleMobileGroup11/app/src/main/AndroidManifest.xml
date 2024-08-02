@@ -16,6 +16,10 @@
             android:name=".fragment.ScheduleActivity"
             android:exported="false" />
         <activity
+            android:name=".dialog.DialogContact"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

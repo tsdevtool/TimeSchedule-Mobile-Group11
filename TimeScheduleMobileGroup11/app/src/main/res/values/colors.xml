@@ -7,4 +7,7 @@
     <color name ="background">#F28B4A</color>
     <color name ="colorIcon">#686464</color>
     <color name ="colorIconTittle">#E75E07</color>
+    <color name="logo">#3b9c8a</color>
+    <color name="access_color">#51AFBFBC</color>
+    <color name="background2">#77F8ECC7</color>
 </resources>

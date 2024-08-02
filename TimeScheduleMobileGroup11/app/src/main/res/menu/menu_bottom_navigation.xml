@@ -4,20 +4,20 @@
         android:id="@+id/home"
         android:title="Trang chủ"
         android:enabled="true"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/home_fragement_icon"/>
     <item
         android:id="@+id/schedule"
         android:title="TKB"
         android:enabled="true"
-        android:icon="@drawable/schedule"/>
+        android:icon="@drawable/schedule_fragement_icon"/>
     <item
         android:id="@+id/examSchedule"
         android:title="Lịch thi"
         android:enabled="true"
-        android:icon="@drawable/exam_schedule"/>
+        android:icon="@drawable/event_fragement_icon"/>
     <item
         android:id="@+id/other"
         android:title="Khác"
         android:enabled="true"
-        android:icon="@drawable/other"/>
+        android:icon="@drawable/other_fragement_icon"/>
 </menu>
