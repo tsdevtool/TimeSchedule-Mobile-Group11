@@ -12,7 +12,7 @@
         android:icon="@drawable/schedule_fragement_icon"/>
     <item
         android:id="@+id/examSchedule"
-        android:title="Lịch thi"
+        android:title="Sự kiện"
         android:enabled="true"
         android:icon="@drawable/event_fragement_icon"/>
     <item

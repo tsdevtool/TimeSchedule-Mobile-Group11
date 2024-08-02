@@ -15,21 +15,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#18A055"
-            android:padding="10dp">
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:background="@color/background">
 
                 <ImageButton
                     android:id="@+id/btnBacktoHome"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginBottom="40dp"
+                    android:layout_gravity="center"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/back_white_40" />
 
@@ -37,7 +40,6 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
-                    android:layout_marginBottom="40dp"
                     android:padding="10dp"
                     android:text="Thời khóa biểu"
                     android:textColor="#FFFFFF"
@@ -48,12 +50,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:background="@drawable/toggle_button_background"
+                    android:background="@color/logo"
                     android:padding="10dp"
-                    android:textColor="#FFFFFF"
+                    android:textColor="@color/white"
                     android:textOff="Ngày"
                     android:textOn="Ngày"
-                    android:layout_marginBottom="40dp"
                     android:textSize="18sp"/>
 
                 <ToggleButton
@@ -61,8 +62,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
-                    android:layout_marginBottom="40dp"
-                    android:background="@drawable/toggle_button_background"
+                    android:background="@color/logo"
                     android:padding="10dp"
                     android:textColor="#FFFFFF"
                     android:textOff="Tuần"
@@ -74,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:background="@color/logo">
                 <ImageButton
                     android:id="@+id/btnBackDate"
                     android:layout_width="0dp"
