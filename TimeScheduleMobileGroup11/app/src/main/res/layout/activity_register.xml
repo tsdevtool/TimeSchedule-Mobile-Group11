@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="660dp"
-        android:background="@color/background"
+        android:background="@drawable/custom_bg_register"
         android:orientation="vertical">
 
         <TextView
@@ -21,11 +21,11 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="40dp"
             android:drawableLeft="@drawable/back_white_40"
-            android:drawablePadding="20dp"
+            android:drawablePadding="10dp"
             android:padding="10dp"
             android:text="Đăng ký"
             android:textColor="#FFFFFFFF"
-            android:textSize="40sp" />
+            android:textSize="30sp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -149,8 +149,8 @@
             android:padding="15dp"
             android:text="Đăng ký"
             android:textSize="24sp"
-            android:backgroundTint="#F28B4A"
-            app:strokeColor="#FFFFFFFF"
+            android:backgroundTint="@color/background"
+            app:strokeColor="@color/white"
             app:strokeWidth="3dp"/>
 
     </LinearLayout>

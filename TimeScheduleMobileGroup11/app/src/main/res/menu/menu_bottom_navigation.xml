@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Trang chủ"
+        android:enabled="true"
+        android:icon="@drawable/home"/>
+    <item
+        android:id="@+id/schedule"
+        android:title="TKB"
+        android:enabled="true"
+        android:icon="@drawable/schedule"/>
+    <item
+        android:id="@+id/examSchedule"
+        android:title="Lịch thi"
+        android:enabled="true"
+        android:icon="@drawable/exam_schedule"/>
+    <item
+        android:id="@+id/other"
+        android:title="Khác"
+        android:enabled="true"
+        android:icon="@drawable/other"/>
+</menu>

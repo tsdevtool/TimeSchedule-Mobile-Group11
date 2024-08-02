@@ -65,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 };
-                handler.postDelayed(runnable,2500);
+                handler.postDelayed(runnable,2000);
             }
         });
     }
