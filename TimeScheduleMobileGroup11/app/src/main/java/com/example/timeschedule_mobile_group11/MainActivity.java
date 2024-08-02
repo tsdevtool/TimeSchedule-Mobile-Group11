@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
                 replaceFragment(new HomeFragment());
+
                 return true;
             } else if (item.getItemId() == R.id.schedule) {
                 replaceFragment(new ScheduleFragment());

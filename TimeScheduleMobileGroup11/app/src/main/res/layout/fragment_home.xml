@@ -10,9 +10,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/btnContact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary">
+<!--            <Button-->
+<!--                android:id="@+id/btnContact"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"/>-->
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
