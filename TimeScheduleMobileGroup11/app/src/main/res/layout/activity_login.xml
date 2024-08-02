@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/logo_icon_1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"/>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="Mã số sinh viên"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:textColor="#FFFFFFFF"
+            android:background="@drawable/border_edittext"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/person_26"
+            android:drawablePadding="10dp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColorHint="@color/white"
+            android:hint="Mật khẩu"
+            android:inputType="textPassword"
+            android:textColor="#FFFFFFFF"
+            android:textSize="24sp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/border_edittext"
+            android:drawableLeft="@drawable/lock_26"
+            android:drawablePadding="10dp"
+            android:drawableRight="@drawable/eye_26"
+            android:singleLine="true" />
+
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/custom_bg_login">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Quên mật khẩu?"
+            android:textColor="#3F51B5"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Đăng nhập"
+            android:textSize="24sp"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:backgroundTint="@color/background"
+            android:textColor="@color/white"
+
+            />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:textSize="24sp"
+            android:textColor="#F28B4A"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#FFFFFF"
+            app:strokeColor="@color/background"
+            app:strokeWidth="3dp"/>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
