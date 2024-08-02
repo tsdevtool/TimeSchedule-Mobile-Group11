@@ -71,12 +71,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void addEvents() {
-        binding.btnContact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                
-            }
-        });
+//        binding.btnContact.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 
     @Override
