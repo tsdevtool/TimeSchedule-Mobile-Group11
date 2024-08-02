@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment {
         binding.btnContact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                
             }
         });
     }
