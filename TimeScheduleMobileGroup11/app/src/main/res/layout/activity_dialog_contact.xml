@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dialog.DialogContact"
+    android:orientation="vertical"
+    android:background="@color/background2">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HOTLINE"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:background="@color/access_color"
+        android:padding="10dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TimeSchedule"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:textColor="@color/logo"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ứng dụng quản lý thời gian dành cho sinh viên"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/logo"/>
+
+<!--        phone number-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/contact_phone_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="phone number"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center|start"/>
+
+        </LinearLayout>
+
+<!--        email-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginStart="30dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/contact_email_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="info@gmail.com"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center|start"/>
+
+        </LinearLayout>
+
+<!--        facebook-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginStart="30dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/facebook_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="www.facebook.com"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center|start"/>
+
+        </LinearLayout>
+
+<!--        website-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginStart="30dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/web_icon"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="https://timeschedule.com"
+                android:layout_marginStart="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:gravity="center|start"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
