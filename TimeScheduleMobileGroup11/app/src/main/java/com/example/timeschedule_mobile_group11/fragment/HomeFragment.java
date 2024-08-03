@@ -31,6 +31,8 @@ public class HomeFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     private FragmentHomeBinding binding;
+    private DialogContact contact ;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -66,8 +68,6 @@ public class HomeFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        addEvents();
     }
 
     private void addEvents() {
@@ -77,6 +77,12 @@ public class HomeFragment extends Fragment {
 //
 //            }
 //        });
+        binding.imvContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                contact.show();
+            }
+        });
     }
 
     @Override
@@ -84,6 +90,9 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
+        contact = new DialogContact(requireContext());
+        addEvents();
         return binding.getRoot();
 
     }
