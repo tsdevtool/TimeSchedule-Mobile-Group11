@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.timeschedule_mobile_group11.databinding.ActivityMainBinding;
+import com.example.timeschedule_mobile_group11.dialog.DialogContact;
 import com.example.timeschedule_mobile_group11.fragment.ExamScheduleFragment;
 import com.example.timeschedule_mobile_group11.fragment.HomeFragment;
 import com.example.timeschedule_mobile_group11.fragment.OtherFragment;
@@ -25,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        replaceFragment(new HomeFragment());
 
+
+        //Setting fragments to MainActivity
+        replaceFragment(new HomeFragment());
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
                 replaceFragment(new HomeFragment());
