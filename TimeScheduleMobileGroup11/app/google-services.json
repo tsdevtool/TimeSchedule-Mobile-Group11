@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "241774512922",
-    "project_id": "timeschedule-58404",
-    "storage_bucket": "timeschedule-58404.appspot.com"
+    "project_number": "985363067148",
+    "project_id": "timeschedule-service",
+    "storage_bucket": "timeschedule-service.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:241774512922:android:b0c5885523b2a31b573aa3",
+        "mobilesdk_app_id": "1:985363067148:android:46739c7a22d57f1dc45929",
         "android_client_info": {
           "package_name": "com.example.timeschedule_mobile_group11"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBxuanflhG7wqLL8HJrAp82RVzpv4g-5d4"
+          "current_key": "AIzaSyCcplpE2mdEF4KrW-BUgbYjj_92gK2o53Q"
         }
       ],
       "services": {

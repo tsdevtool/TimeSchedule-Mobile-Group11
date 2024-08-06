@@ -16,6 +16,8 @@ import com.example.timeschedule_mobile_group11.fragment.ExamScheduleFragment;
 import com.example.timeschedule_mobile_group11.fragment.HomeFragment;
 import com.example.timeschedule_mobile_group11.fragment.OtherFragment;
 import com.example.timeschedule_mobile_group11.fragment.ScheduleFragment;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 import java.io.FileOutputStream;
