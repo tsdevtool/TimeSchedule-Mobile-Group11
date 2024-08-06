@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import androidx.activity.EdgeToEdge;
@@ -25,8 +26,11 @@ public class DialogContact extends Dialog {
         super(context);
 
         WindowManager.LayoutParams params= getWindow().getAttributes();
+        getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER;
         getWindow().setAttributes(params);
+        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getWindow().setWindowAnimations(R.style.Dialog_translate);
         setTitle(null);
         setCancelable(true);
         setOnCancelListener(null);
