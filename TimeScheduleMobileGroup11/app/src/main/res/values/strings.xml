@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TimeSchedule-Mobile-Group11</string>
+    <string name="app_name">TimeSchedule</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -42,5 +42,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="studentCode">Mã số sinh viên/ Mã giảng viên</string>
+    <string name="password">Mật khẩu</string>
+    <string name="forgotPassword">Quên mật khẩu?</string>
+    <string name="login">Đăng nhập</string>
+    <string name="register">Đăng ký</string>
 
 </resources>

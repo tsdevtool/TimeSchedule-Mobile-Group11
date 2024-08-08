@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".dialog.DialogContact"
     android:orientation="vertical"
-    android:background="@color/background2">
+    android:background="@drawable/border_dialog_contact">
 
     <TextView
         android:layout_width="match_parent"
