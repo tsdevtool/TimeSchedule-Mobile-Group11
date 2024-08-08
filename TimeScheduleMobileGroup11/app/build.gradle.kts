@@ -55,5 +55,13 @@ dependencies {
     implementation ("com.airbnb.android:lottie:6.4.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-auth")
+
+    //Load image from url
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+//    Circle image view
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 
 }

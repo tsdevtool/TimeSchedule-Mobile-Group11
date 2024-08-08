@@ -2,7 +2,9 @@ package com.example.timeschedule_mobile_group11.fragment;
 
 import android.app.ActivityOptions;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
@@ -13,10 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.bumptech.glide.Glide;
+import com.example.timeschedule_mobile_group11.LoginActivity;
 import com.example.timeschedule_mobile_group11.MainActivity;
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.FragmentHomeBinding;
 import com.example.timeschedule_mobile_group11.dialog.DialogContact;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +38,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private DialogContact contact ;
+    ProgressDialog progressDialog;
 
 
     // TODO: Rename and change types of parameters
@@ -70,6 +77,19 @@ public class HomeFragment extends Fragment {
         }
     }
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
+        contact = new DialogContact(requireContext());
+        addEvents();
+        return binding.getRoot();
+
+    }
+
     private void addEvents() {
 //        binding.btnContact.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -83,17 +103,35 @@ public class HomeFragment extends Fragment {
                 contact.show();
             }
         });
+        showAvatar();
+        logout();
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
-        contact = new DialogContact(requireContext());
-        addEvents();
-        return binding.getRoot();
+    private void logout() {
+//        Firebase.loadFirebase();
+        binding.imvProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Kết thúc MainActivity
+                getActivity().finish();
+                FirebaseAuth.getInstance().signOut();
+                // Khởi động lại LoginActivity
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
 
+            }
+        });
+    }
+
+    private void showAvatar() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null){
+            return;
+        }
+
+        Uri urlAvatar = user.getPhotoUrl();
+        Glide.with(this).load(urlAvatar).error(R.drawable.user_icon).into(binding.imvProfile);
     }
 }
