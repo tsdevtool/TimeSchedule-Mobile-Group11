@@ -24,7 +24,8 @@
 
 
         <EditText
-            android:id="@+id/edtUserCode"
+
+            android:id="@+id/edtUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -56,6 +57,19 @@
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/eye_26"
             android:singleLine="true" />
+        <!--<CheckBox
+            android:id="@+id/chkShowPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/white"
+            android:text="Hiển thị mật khẩu"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="140dp"/>-->
+
 
     </FrameLayout>
 
