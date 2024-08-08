@@ -91,14 +91,14 @@ public class LoginActivity extends AppCompatActivity {
         //Xu ly firebase
         Firebase.loadFirebase();
 
-                loading.show();
-                Handler handler= new Handler();
-                Runnable runnable= new Runnable() {
-                    @Override
-                    public void run() {
-                        loading.cancel();
-                        startActivity(myIntent);
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+//                loading.show();
+//                Handler handler= new Handler();
+//                Runnable runnable= new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        loading.cancel();
+//                        startActivity(myIntent);
+//                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
         //Xu ly dang nhap
         addEvents();
@@ -124,20 +124,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login() {
         String email, password;
-        email = binding.edtUserCode.getText().toString();
-        password = binding.edtPassword.getText().toString();
+        email = binding.edtUser.getText().toString().trim();
+        password = binding.edtPassword.getText().toString().trim();
 
         if(TextUtils.isEmpty(email) ){
-            Toast.makeText(this, "Vui lòng nhập email hoặc mã số của bạn!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Vui lòng nhập email hoặc mã số của bạn!!", Toast.LENGTH_SHORT).show();
             return;
         }
 
         if(TextUtils.isEmpty(password) ){
-            Toast.makeText(this, "Vui lòng nhập mật khẩu!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Vui lòng nhập mật khẩu!!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Firebase.mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        Firebase.mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){

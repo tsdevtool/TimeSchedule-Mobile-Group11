@@ -33,12 +33,21 @@ public class MainActivity extends AppCompatActivity {
     String DATABASE_NAME = "db_timeschedule.db";
     //Khai bao cac bien lien quan toi database
     SQLiteDatabase database = null;
+    FirebaseDatabase database2;
+    DatabaseReference myRef;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Viết thông báo vào database
+        database2 = FirebaseDatabase.getInstance();
+        myRef= database2.getReference("message");
+        myRef.setValue("Hello,Word!");
 
 
         //Setting fragments to MainActivity
@@ -116,5 +125,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
 
 }
