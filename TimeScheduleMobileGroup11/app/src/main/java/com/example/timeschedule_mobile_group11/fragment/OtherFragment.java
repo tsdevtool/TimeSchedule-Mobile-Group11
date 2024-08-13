@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
@@ -82,11 +83,23 @@ public class OtherFragment extends Fragment {
         binding.btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_DIAL); // Sử dụng ACTION_DIAL để mở giao diện quay số
+                Intent intent = new Intent(Intent.ACTION_DIAL);
                 Uri uri = Uri.parse("tel: "+ Contact.PHONE_NUMBER);
                 intent.setData(uri);
                 startActivity(intent);
             }
         });
-        
+        binding.btnKhaibao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.btnThuctap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 }}
