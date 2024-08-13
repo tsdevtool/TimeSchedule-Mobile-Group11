@@ -64,4 +64,8 @@ dependencies {
 //    Circle image view
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+    //Xu ly hinh anh
+    implementation ("com.google.firebase:firebase-storage:20.0.0")
+
+
 }

@@ -5,8 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:orientation="vertical">
+    tools:context=".ProfileActivity"
+    android:background="@color/access_color"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,56 +16,41 @@
         android:orientation="vertical"
         android:gravity="center">
 
-<!--        Header-->
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="0dp"
-            android:paddingLeft="4dp"
-            android:layout_marginBottom="20dp">
-            <ImageView
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/back_white_40"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="40dp"
+            android:drawableLeft="@drawable/back_white_40"
+            android:drawablePadding="10dp"
+            android:padding="10dp"
+            android:text="Thông tin tài khoản"
+            android:textColor="#FFFFFFFF"
+            android:textSize="30sp" />
 
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="Đăng ký"
-                android:textColor="#FFFFFFFF"
-                android:textSize="30sp" />
-        </LinearLayout>
-
-<!--        Hinh anh nguoi dung duoc set mac dinh-->
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imvAvatar"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@drawable/user_icon"
-            android:layout_marginBottom="25dp"/>
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginBottom="30dp"
+            />
 
         <EditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Mã số sinh viên"
             android:padding="15dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/email"
+            android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="24sp"
-            android:textColor="#FFFFFFFF"
-            android:background="@drawable/border_edittext"
             android:singleLine="true"
-            android:drawableLeft="@drawable/baseline_email_24"
-            android:drawablePadding="10dp"
-            android:maxLength="50"
-            />
+            android:drawableLeft="@drawable/person_26"
+            android:drawablePadding="10dp"/>
 
         <EditText
             android:id="@+id/edtUserCode"
@@ -148,7 +134,6 @@
             android:drawablePadding="10dp"/>
 
         <EditText
-            android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -165,26 +150,26 @@
             android:drawableRight="@drawable/eye_26"
             android:drawablePadding="10dp"/>
 
-<!--        <EditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:background="@drawable/border_edittext"-->
-<!--            android:hint="Xác thực mật khẩu"-->
-<!--            android:padding="15dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textColorHint="@color/white"-->
-<!--            android:textSize="24sp"-->
-<!--            android:singleLine="true"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:drawableLeft="@drawable/lock_26"-->
-<!--            android:drawableRight="@drawable/eye_26"-->
-<!--            android:drawablePadding="10dp"/>-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:hint="Xác thực mật khẩu"
+            android:padding="15dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:drawableLeft="@drawable/lock_26"
+            android:drawableRight="@drawable/eye_26"
+            android:drawablePadding="10dp"/>
 
         <Button
-            android:id="@+id/btnRegisterSucess"
+            android:id="@+id/btnUpdate"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -192,13 +177,20 @@
             android:gravity="center"
             android:textColor="#FFFFFFFF"
             android:padding="15dp"
-            android:text="Đăng ký"
+            android:text="Cập nhật thông tin"
             android:textSize="24sp"
             android:backgroundTint="@color/background"
             app:strokeColor="@color/white"
             app:strokeWidth="3dp"/>
 
     </LinearLayout>
+
+
+
+
+
+
+
 
 
 </ScrollView>
