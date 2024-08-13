@@ -83,6 +83,7 @@
 
 
             <Button
+                android:id="@+id/btnLop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -94,6 +95,7 @@
                 android:textColor="@color/black" />
 
             <Button
+                android:id="@+id/btnSukien"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sự kiện"
@@ -105,6 +107,7 @@
             android:paddingEnd="16dp" />
 
             <Button
+                android:id="@+id/btnLichthi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lịch thi"
