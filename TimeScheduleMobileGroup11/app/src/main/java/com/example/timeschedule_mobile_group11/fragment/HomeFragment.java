@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.models.Event;
+import com.example.timeschedule_mobile_group11.EventAdapter;
 import com.example.timeschedule_mobile_group11.MainActivity;
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.FragmentHomeBinding;
@@ -53,6 +54,7 @@ public class HomeFragment extends Fragment {
     private DialogContact contact ;
     private OnFragmentInteractionListener listener;
     private DatabaseReference eventsRef;
+    private EventAdapter eventAdapter;
 
 
     // TODO: Rename and change types of parameters
@@ -147,30 +149,35 @@ public class HomeFragment extends Fragment {
         contact = new DialogContact(requireContext());
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
         addEvents();
-        loadEvent();
+
+        loadNewEvent();
         return binding.getRoot();
 
 
     }
 
-    private void loadEvent() {
+    private void loadNewEvent() {
         eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<Event> eventList= new ArrayList<>();
-                for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    Event event= snapshot1.getValue(Event.class);
-                    if(event!= null){
+                List<Event> eventList = new ArrayList<>();
+                for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                    Event event = snapshot1.getValue(Event.class);
+                    if (event != null) {
                         eventList.add(event);
                     }
                 }
-                if(!eventList.isEmpty()){
+                if (!eventList.isEmpty()) {
                     Event latestEvent = getLatestEvent(eventList);
                     updateUI(latestEvent);
+
+                    // Hiển thị các sự kiện còn lại vào ListView
+                    showEventsExceptLatest(eventList, latestEvent);
                 } else {
                     Toast.makeText(getContext(), "No events found.", Toast.LENGTH_SHORT).show();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Fail!", Toast.LENGTH_SHORT).show();
@@ -178,7 +185,7 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private Event getLatestEvent(List<Event> events){
+    private Event getLatestEvent(List<Event> events) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         Event latestEvent = null;
         Date latestDate = null;
@@ -196,6 +203,7 @@ public class HomeFragment extends Fragment {
         }
         return latestEvent;
     }
+
     private void updateUI(Event event) {
         // Cập nhật tiêu đề sự kiện
         binding.tvTitleEvent.setText(event.getTitle());
@@ -210,7 +218,35 @@ public class HomeFragment extends Fragment {
             binding.imvPhotoEvent.setImageResource(R.drawable.img); // Hình ảnh mặc định nếu không tìm thấy
         }
     }
-    // Hàm này lấy ID của tài nguyên drawable dựa trên tên hình ảnh
+
+    private void showEventsExceptLatest(List<Event> eventList, Event latestEvent) {
+        // Loại bỏ sự kiện mới nhất từ danh sách
+        eventList.remove(latestEvent);
+
+        // Sắp xếp danh sách sự kiện từ mới nhất đến cũ nhất
+        Collections.sort(eventList, (e1, e2) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+            try {
+                Date d1 = sdf.parse(e1.getTime());
+                Date d2 = sdf.parse(e2.getTime());
+                return d2.compareTo(d1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        });
+
+        // Cập nhật adapter với danh sách sự kiện còn lại
+        if (eventAdapter == null) {
+            eventAdapter = new EventAdapter(requireContext(), eventList);
+            binding.lvEvents.setAdapter(eventAdapter);
+        } else {
+            eventAdapter.clear();
+            eventAdapter.addAll(eventList);
+            eventAdapter.notifyDataSetChanged();
+        }
+    }
+
     private int getDrawableResourceByName(Context context, String imageName) {
         return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
     }
