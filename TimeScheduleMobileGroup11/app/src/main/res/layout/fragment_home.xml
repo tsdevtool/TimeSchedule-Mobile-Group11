@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,10 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary">
-<!--            <Button-->
-<!--                android:id="@+id/btnContact"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"/>-->
+            <!--            <Button-->
+            <!--                android:id="@+id/btnContact"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"/>-->
             <ImageView
                 android:id="@+id/imvContact"
                 android:layout_width="50dp"
@@ -30,7 +30,8 @@
                 android:src="@drawable/logo_app"
                 android:layout_gravity="center"
                 android:layout_weight="1"/>
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imvProfile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/user_icon"
@@ -38,7 +39,7 @@
                 />
         </LinearLayout>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2">
@@ -72,6 +73,7 @@
                         android:padding="12dp">
 
                         <LinearLayout
+                            android:id="@+id/layoutTKB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -79,6 +81,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+
                                 android:layout_width="100dp"
                                 android:layout_height="70dp"
                                 android:src="@drawable/schedule_icon"
@@ -94,6 +97,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/layoutEvent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -127,9 +131,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sự kiện mới nhất"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
                     <ImageView
+                        android:id="@+id/imvPhotoEvent"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/img"
@@ -137,32 +142,37 @@
                         android:layout_marginBottom="8dp"
                         />
                     <TextView
+                        android:id="@+id/tvTitleEvent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sinh viên MJIT hướng dẫn học sinh Trường THPT Waseda (Nhật Bản) trải nghiệm văn hóa Việt"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:singleLine="true"/>
                 </LinearLayout>
 
                 <!--        thong tin khac-->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="481dp"
                     android:orientation="vertical"
                     android:padding="15dp">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sự kiện khác"
-                        android:textSize="18sp"
+                        android:textSize="20sp"
                         android:textStyle="bold" />
+
                     <ListView
                         android:id="@+id/lvEvents"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"
+                        android:scrollbars="none" />
                 </LinearLayout>
             </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+</ScrollView>

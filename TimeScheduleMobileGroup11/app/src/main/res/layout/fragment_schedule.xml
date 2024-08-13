@@ -76,12 +76,13 @@
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:background="@color/logo">
+
                 <ImageButton
                     android:id="@+id/btnBackDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:src="@drawable/baseline_arrow_back_ios_new_24" />
                 <TextView

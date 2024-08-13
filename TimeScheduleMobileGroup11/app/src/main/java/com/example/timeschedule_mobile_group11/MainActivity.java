@@ -1,6 +1,7 @@
 package com.example.timeschedule_mobile_group11;
 
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -10,12 +11,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.models.Event;
+import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityMainBinding;
 import com.example.timeschedule_mobile_group11.dialog.DialogContact;
 import com.example.timeschedule_mobile_group11.fragment.ExamScheduleFragment;
 import com.example.timeschedule_mobile_group11.fragment.HomeFragment;
 import com.example.timeschedule_mobile_group11.fragment.OtherFragment;
 import com.example.timeschedule_mobile_group11.fragment.ScheduleFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,17 +29,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
 
     ActivityMainBinding binding;
-    String DB_PATH_SUFFIX = "/databases/";
-    String DATABASE_NAME = "db_timeschedule.db";
+//    String DB_PATH_SUFFIX = "/databases/";
+//    String DATABASE_NAME = "db_timeschedule.db";
+
     //Khai bao cac bien lien quan toi database
-    SQLiteDatabase database = null;
-    FirebaseDatabase database2;
-    DatabaseReference myRef;
+    private FirebaseDatabase database;
+    private DatabaseReference myDef;
+    private FragmentManager fragmentManager;
+    private BottomNavigationView bottomNavigationView;
 
 
 
@@ -44,14 +52,60 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //Viết thông báo vào database
-        database2 = FirebaseDatabase.getInstance();
-        myRef= database2.getReference("message");
-        myRef.setValue("Hello,Word!");
+        //Dữ liệu test event
+        // Initialize Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference eventsRef = database.getReference().child("events"); // Reference to "events" node
+
+//        // Create sample events
+//        Event event1 = new Event(
+//                1,
+//                1,
+//                "E1.03.02",
+//                "2024-08-15T09:00:00",
+//                "image1.png",
+//                "A description for event 1.",
+//                "Event Title 1",
+//                "Location 1"
+//        );
+//
+//        Event event2 = new Event(
+//                2,
+//                2,
+//                "E2.04.03",
+//                "2024-08-16T11:00:00",
+//                "image2.png",
+//                "A description for event 2.",
+//                "Event Title 2",
+//                "Location 2"
+//        );
+//
+//        Event event3 = new Event(
+//                3,
+//                1,
+//                "E3.05.04",
+//                "2024-08-17T14:00:00",
+//                "image3.png",
+//                "A description for event 3.",
+//                "Event Title 3",
+//                "Location 3"
+//        );
+//        eventsRef.child("event1").setValue(event1);
+//        eventsRef.child("event2").setValue(event2);
+//        eventsRef.child("event3").setValue(event3);
 
 
-        //Setting fragments to MainActivity
-        replaceFragment(new HomeFragment());
+
+
+
+
+        fragmentManager = getSupportFragmentManager();
+        bottomNavigationView = binding.bottomNavigationView;
+
+        // Set initial fragment
+        if (savedInstanceState == null) {
+            replaceFragment(new HomeFragment());
+        }
         binding.bottomNavigationView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.home) {
                 replaceFragment(new HomeFragment());
@@ -71,59 +125,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     private void replaceFragment(Fragment fragment){
-        FragmentManager fragmentManager= getSupportFragmentManager();
+        //FragmentManager fragmentManager= getSupportFragmentManager();
         FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
+        //
     }
 
-    //Database
-
-    public void processCopy() {
-        //private app
-        File dbFile = getDatabasePath(DATABASE_NAME);
-
-        if (!dbFile.exists())
-        {
-            try{CopyDataBaseFromAsset();
-                Toast.makeText(this, "Copying sucess from Assets folder", Toast.LENGTH_LONG).show();
-            }
-            catch (Exception e){
-                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show();
-            }
-        }
+    @Override
+    public void onImageClicked() {
+        replaceFragment(new ScheduleFragment());
+        bottomNavigationView.setSelectedItemId(R.id.schedule);
     }
-    private String getDatabasePath() {
-        return getApplicationInfo().dataDir + DB_PATH_SUFFIX+ DATABASE_NAME;
-    }
-    public void CopyDataBaseFromAsset() {
-// TODO Auto-generated method stub
-        try {
-            InputStream myInput;
-            myInput = getAssets().open(DATABASE_NAME);
-// Path to the just created empty db
-            String outFileName = getDatabasePath();
-// if the path doesn't exist first, create it
-            File f = new File(getApplicationInfo().dataDir + DB_PATH_SUFFIX);
-            if (!f.exists())
-                f.mkdir();
-// Open the empty db as the output stream
-            OutputStream myOutput = new FileOutputStream(outFileName);
-// transfer bytes from the inputfile to the outputfile
-// Truyền bytes dữ liệu từ input đến output
-            int size = myInput.available();
-            byte[] buffer = new byte[size];
-            myInput.read(buffer);
-            myOutput.write(buffer);
-// Close the streams
-            myOutput.flush();
-            myOutput.close();
-            myInput.close();
-        } catch (IOException e) {
-// TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+
+    @Override
+    public void onImageClickedToEventFragment() {
+        replaceFragment(new OtherFragment());
+        bottomNavigationView.setSelectedItemId(R.id.examSchedule);
     }
 
 
