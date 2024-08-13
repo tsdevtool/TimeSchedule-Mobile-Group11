@@ -1,5 +1,7 @@
 package com.example.timeschedule_mobile_group11.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +9,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.example.timeschedule_mobile_group11.R;
+import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
+import com.example.timeschedule_mobile_group11.databinding.FragmentOtherBinding;
+import com.example.utils.Contact;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,7 +22,7 @@ import com.example.timeschedule_mobile_group11.R;
  * create an instance of this fragment.
  */
 public class OtherFragment extends Fragment {
-
+    FragmentOtherBinding binding;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -51,16 +57,36 @@ public class OtherFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        binding = FragmentOtherBinding.inflate(getLayoutInflater());
+        addEvents();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_other, container, false);
+        return binding.getRoot();
+
     }
-}
+
+    private void addEvents() {
+        binding.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL); // Sử dụng ACTION_DIAL để mở giao diện quay số
+                Uri uri = Uri.parse("tel: "+ Contact.PHONE_NUMBER);
+                intent.setData(uri);
+                startActivity(intent);
+            }
+        });
+        
+}}

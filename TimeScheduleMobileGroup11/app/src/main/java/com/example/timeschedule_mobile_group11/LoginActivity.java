@@ -126,7 +126,6 @@ public class LoginActivity extends AppCompatActivity {
         String email, password;
         email = binding.edtUser.getText().toString().trim();
         password = binding.edtPassword.getText().toString().trim();
-
         if(TextUtils.isEmpty(email) ){
             Toast.makeText(LoginActivity.this, "Vui lòng nhập email hoặc mã số của bạn!!", Toast.LENGTH_SHORT).show();
             return;
