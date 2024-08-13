@@ -31,7 +31,7 @@
             android:padding="15dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="@string/studentCode"
+            android:hint="@string/email"
             android:textColorHint="@color/white"
             android:textSize="24sp"
             android:textColor="#FFFFFFFF"

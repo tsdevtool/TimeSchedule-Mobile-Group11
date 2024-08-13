@@ -1,98 +1,119 @@
 package com.example.models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class User implements Serializable {
-    private int id;
-    private String username;
-    private String password;
-    private String fullname;
-    private String avatar;
+    private String userCode;
     private String email;
-    private Date dayAdmission;
-    private int classId;
-    private int facultyId;
-    private int roleId;
-
-    public User(int id, String username, String fullname, String password, String avatar, String email, Date dayAdmission, int classId, int facultyId, int roleId) {
-        this.id = id;
-        this.username = username;
-        this.fullname = fullname;
-        this.password = password;
-        this.avatar = avatar;
-        this.email = email;
-        this.dayAdmission = dayAdmission;
-        this.classId = classId;
-        this.facultyId = facultyId;
-        this.roleId = roleId;
-    }
+    private String password;
+    private String fullName;
+    private String avatarUrl;
+    private String dayOfBirth;
+    private boolean sex;
+    private String dayAdmission;
+    private String classId;
+    private String facultyId;
+    private String roleId;
 
     public User() {
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getFacultyId() {
-        return facultyId;
-    }
-
-    public void setFacultyId(int facultyId) {
-        this.facultyId = facultyId;
-    }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-    public int getClassId() {
-        return classId;
-    }
-
-    public void setClassId(int classId) {
-        this.classId = classId;
-    }
-
-    public Date getDayAdmission() {
-        return dayAdmission;
-    }
-
-    public void setDayAdmission(Date dayAdmission) {
+    public User(String userCode, String dayAdmission, boolean sex, String dayOfBirth, String avatarUrl, String fullName, String password, String email) {
+        this.userCode = userCode;
         this.dayAdmission = dayAdmission;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
+        this.sex = sex;
+        this.dayOfBirth = dayOfBirth;
+        this.avatarUrl = avatarUrl;
+        this.fullName = fullName;
+        this.password = password;
         this.email = email;
     }
 
-    public String getAvatar() {
-        return avatar;
+    public User(String userCode, String email, String password, String fullName, String avatarUrl, String dayOfBirth, boolean sex, String dayAdmission, String classId, String facultyId, String roleId) {
+        this.userCode = userCode;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.avatarUrl = avatarUrl;
+        this.dayOfBirth = dayOfBirth;
+        this.sex = sex;
+        this.dayAdmission = dayAdmission;
+        this.classId = classId;
+        this.facultyId = facultyId;
+        this.roleId = roleId;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public String getFullname() {
-        return fullname;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public String getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getFacultyId() {
+        return facultyId;
+    }
+
+    public void setFacultyId(String facultyId) {
+        this.facultyId = facultyId;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
+
+    public String getDayAdmission() {
+        return dayAdmission;
+    }
+
+    public void setDayAdmission(String dayAdmission) {
+        this.dayAdmission = dayAdmission;
+    }
+
+    public String getDayOfBirth() {
+        return dayOfBirth;
+    }
+
+    public void setDayOfBirth(String dayOfBirth) {
+        this.dayOfBirth = dayOfBirth;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getPassword() {
@@ -103,11 +124,11 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
