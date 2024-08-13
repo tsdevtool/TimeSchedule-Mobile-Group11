@@ -43,6 +43,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="studentCode">Mã số sinh viên/ Mã giảng viên</string>
+    <string name="email">Email</string>
     <string name="password">Mật khẩu</string>
     <string name="forgotPassword">Quên mật khẩu?</string>
     <string name="login">Đăng nhập</string>

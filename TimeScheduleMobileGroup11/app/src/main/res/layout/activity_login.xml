@@ -31,14 +31,16 @@
             android:padding="15dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="@string/studentCode"
+            android:hint="@string/email"
             android:textColorHint="@color/white"
             android:textSize="24sp"
             android:textColor="#FFFFFFFF"
             android:background="@drawable/border_edittext"
             android:singleLine="true"
             android:drawableLeft="@drawable/person_26"
-            android:drawablePadding="10dp"/>
+            android:drawablePadding="10dp"
+            android:maxLength="50"
+            />
         <EditText
             android:id="@+id/edtPassword"
             android:layout_width="match_parent"
@@ -56,7 +58,8 @@
             android:drawableLeft="@drawable/lock_26"
             android:drawablePadding="10dp"
             android:drawableRight="@drawable/eye_26"
-            android:singleLine="true" />
+            android:singleLine="true"
+            android:maxLength="50"/>
         <!--<CheckBox
             android:id="@+id/chkShowPass"
             android:layout_width="match_parent"

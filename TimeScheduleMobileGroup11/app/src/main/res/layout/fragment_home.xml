@@ -30,7 +30,8 @@
                 android:src="@drawable/logo_app"
                 android:layout_gravity="center"
                 android:layout_weight="1"/>
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imvProfile"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/user_icon"

@@ -22,6 +22,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 import com.example.firebase.Firebase;
 import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
@@ -121,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //Xu ly firebase
-        Firebase.loadFirebase();
+//        Firebase.loadFirebase();
 
 //                loading.show();
 //                Handler handler= new Handler();
@@ -158,7 +159,6 @@ public class LoginActivity extends AppCompatActivity {
         String email, password;
         email = binding.edtUser.getText().toString().trim();
         password = binding.edtPassword.getText().toString().trim();
-
         if(TextUtils.isEmpty(email) ){
             Toast.makeText(LoginActivity.this, "Vui lòng nhập email hoặc mã số của bạn!!", Toast.LENGTH_SHORT).show();
             return;
@@ -169,7 +169,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Firebase.mAuth.signInWithEmailAndPassword(email, password)
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -183,6 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void run() {
                             loading.cancel();
                             startActivity(intent);
+                            finish();
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
                         }
