@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
@@ -16,12 +17,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.firebase.Firebase;
 import com.example.timeschedule_mobile_group11.databinding.ActivityRegisterBinding;
 import com.example.utils.Password;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -53,8 +54,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String email, password;
-                email = binding.edtUsername.getText().toString();
-                password = Password.generatePassword(12);
+                email = binding.edtUsername.getText().toString().trim();
+//                password = Password.generatePassword(12).trim();
+                password = binding.edtFullname.getText().toString().trim();
 
                 if(TextUtils.isEmpty(email) ){
                     Toast.makeText(RegisterActivity.this, "Vui lòng nhập email hoặc mã số của bạn!!", Toast.LENGTH_SHORT).show();
@@ -66,7 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                Firebase.mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
@@ -83,7 +86,9 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             };
                             handler.postDelayed(runnable,2000);
+                            finishAffinity();
                         }else{
+
                             Toast.makeText(RegisterActivity.this, "Tạo tài khoản không thành công!", Toast.LENGTH_SHORT).show();
                         }
                     }
