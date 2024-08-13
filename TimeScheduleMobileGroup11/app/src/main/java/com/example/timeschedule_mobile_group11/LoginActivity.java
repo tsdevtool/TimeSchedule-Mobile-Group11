@@ -21,7 +21,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.firebase.Firebase;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -89,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         //Xu ly firebase
-        Firebase.loadFirebase();
+//        Firebase.loadFirebase();
 
 //                loading.show();
 //                Handler handler= new Handler();
@@ -136,7 +135,8 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Firebase.mAuth.signInWithEmailAndPassword(email, password)
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -150,6 +150,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void run() {
                             loading.cancel();
                             startActivity(intent);
+                            finish();
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
                         }
