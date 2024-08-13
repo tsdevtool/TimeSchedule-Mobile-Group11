@@ -33,6 +33,12 @@ android {
     buildFeatures{
         viewBinding = true
     }
+    packagingOptions {
+        exclude ("META-INF/NOTICE.md")
+        exclude ("META-INF/NOTICE.txt")
+        exclude ("META-INF/LICENSE.md")
+        exclude ("META-INF/LICENSE.txt")
+    }
 }
 
 dependencies {
@@ -67,5 +73,13 @@ dependencies {
     //Xu ly hinh anh
     implementation ("com.google.firebase:firebase-storage:20.0.0")
 
+//    Xu li gui email
+//    implementation("com.sun.mail:android-additional:1.6.6")
+    implementation ("com.sun.mail:android-mail:1.6.6")
+    implementation ("com.sun.mail:android-activation:1.6.6")
+
+//    implementation files("libs/activation.jar")
+//    implementation files("libs/additionnal.jar")
+//    implementation files("libs/mail.jar")
 
 }

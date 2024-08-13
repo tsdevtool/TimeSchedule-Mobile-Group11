@@ -1,6 +1,7 @@
 package com.example.timeschedule_mobile_group11;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -12,26 +13,24 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
 import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityRegisterBinding;
+import com.example.utils.JavaMailAPI;
+import com.example.utils.MailUtils;
 import com.example.utils.Password;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import java.sql.Date;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -49,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
+    private String receiver;
+    private String subject;
+    private String body;
+    private JavaMailAPI javaMailAPI;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,19 @@ public class RegisterActivity extends AppCompatActivity {
 //        Xu ly dang ky tai khoan
         addEvents();
     }
+    public void sendRegisterAccount(String email, String password){
+        subject = "TIMESCHEDULE - GỬI THÔNG TIN MẬT KHẨU";
+        body = subject + "\n\nĐây là mật khẩu tài khoản được gửi từ TimeSchedule. Tuyệt đối không được gửi cho bất cứ ai. \n"
+                + password.trim() + "\n\nThân ái";
+//        javaMailAPI = new JavaMailAPI(RegisterActivity.this, email,subject, body);
+//        javaMailAPI.execute();
+//        String recipient = "recipient@example.com";
+//        String subject = "Hello from Android";
+//        String message = "This is a test email sent from an Android app.";
+
+        JavaMailAPI sendMailTask = new JavaMailAPI(email, subject, body);
+        sendMailTask.execute();
+    }
 
     private void addEvents() {
 //        Xu ly dang ky tai khoan
@@ -75,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                 user.setEmail(binding.edtEmail.getText().toString());
                 user.setFullName(binding.edtFullname.getText().toString());
 //        user.setAvatar(R.drawable.user_icon.);
-                user.setPassword(binding.edtPassword.getText().toString());
+                user.setPassword(Password.generatePassword(12));
                 user.setDayOfBirth(binding.edtDayOfBirth.getText().toString());
                 if(binding.chkMale.isChecked()){
                     user.setSex(true);
@@ -109,8 +126,27 @@ public class RegisterActivity extends AppCompatActivity {
     private void saveUserData(String userId, User user) {
         usersRef.child(userId).setValue(user).addOnCompleteListener(task -> {
            if(task.isSuccessful()){
+               //Gui email thong tin dang nhap cho sinh vien
+               // Tạo nội dung email
+//               FirebaseUser firebaseUser = mAuth.getCurrentUser();
+//               if(firebaseUser!=null){
+//                   firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                       @Override
+//                       public void onComplete(@NonNull Task<Void> task) {
+//                           if(task.isSuccessful()){
+//                               Toast.makeText(RegisterActivity.this, "Đã gửi email xác thực về tài khoản", Toast.LENGTH_SHORT).show();
+//                           }else{
+//                               Toast.makeText(RegisterActivity.this, "Lỗi khi gửi email xác thực", Toast.LENGTH_SHORT).show();
+//                           }
+//                       }
+//                   });
+//               }
+
+//               new MailUtils().sendRegisterAccount(RegisterActivity.this, user.getEmail(), user.toString());
+                sendRegisterAccount(user.getEmail(), user.getPassword());
+
                //Thong bao thanh cong
-               Intent myIntent =  new Intent(RegisterActivity.this, MainActivity.class);
+               Intent myIntent =  new Intent(RegisterActivity.this, LoginActivity.class);
                loading.show();
                Handler handler= new Handler();
                Runnable runnable= new Runnable() {
