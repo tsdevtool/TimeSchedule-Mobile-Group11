@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -21,11 +22,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
+import com.example.firebase.Firebase;
+import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Date;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,12 +44,35 @@ public class LoginActivity extends AppCompatActivity {
     AloadingDialog loading;
 
     boolean isPasswordVisible = false;
+    //Khai bao cac bien lien quan toi database
+    private FirebaseDatabase database;
+    private DatabaseReference myDef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        // Khởi tạo Firebase
+//        database = FirebaseDatabase.getInstance();
+//        myDef = database.getReference().child("user");
+
+//        // Tạo đối tượng User mới
+//        String id = myDef.push().getKey();
+//        String username = "newuser";
+//        String fullname = "New User";
+//        String password = "newpassword123";
+//        String avatar = "avatar_url";
+//        String email = "newuser@example.com";
+//        Date dayAdmission = new Date();
+//        int classId = 102;
+//        int facultyId = 11;
+//        int roleId = 2;
+//
+//        User newUser = new User(id, username, fullname, password, avatar, email, dayAdmission, classId, facultyId, roleId);
+//        myDef.child(id).setValue(newUser);
+
+
 
 
         // Hiển thị mật khẩu
@@ -161,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 }

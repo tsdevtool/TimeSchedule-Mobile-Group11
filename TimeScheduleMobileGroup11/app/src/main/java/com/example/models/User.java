@@ -3,6 +3,7 @@ package com.example.models;
 import java.io.Serializable;
 
 public class User implements Serializable {
+
     private String userCode;
     private String email;
     private String password;
@@ -47,6 +48,8 @@ public class User implements Serializable {
     public String getUserCode() {
         return userCode;
     }
+
+
 
     public void setUserCode(String userCode) {
         this.userCode = userCode;
