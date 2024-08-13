@@ -128,18 +128,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
-        contact = new DialogContact(requireContext());
-        addEvents();
-        return binding.getRoot();
-
-    }
-
     private void addEvents() {
 //        binding.btnContact.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -171,6 +159,8 @@ public class HomeFragment extends Fragment {
                 }
             }
         });
+        showAvatar();
+        logout();
     }
 
     @Override
@@ -282,8 +272,7 @@ public class HomeFragment extends Fragment {
 
     private int getDrawableResourceByName(Context context, String imageName) {
         return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
-        showAvatar();
-        logout();
+
 
     }
 

@@ -23,7 +23,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 
-import com.example.firebase.Firebase;
 import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
