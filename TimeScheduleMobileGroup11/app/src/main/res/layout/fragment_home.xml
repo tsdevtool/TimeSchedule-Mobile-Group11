@@ -72,6 +72,7 @@
                         android:padding="12dp">
 
                         <LinearLayout
+                            android:id="@+id/layoutTKB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -79,6 +80,7 @@
                             android:orientation="vertical">
 
                             <ImageView
+
                                 android:layout_width="100dp"
                                 android:layout_height="70dp"
                                 android:src="@drawable/schedule_icon"
@@ -94,6 +96,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/layoutEvent"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -130,6 +133,7 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
                     <ImageView
+                        android:id="@+id/imvPhotoEvent"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/img"
@@ -137,6 +141,7 @@
                         android:layout_marginBottom="8dp"
                         />
                     <TextView
+                        android:id="@+id/tvTitleEvent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Sinh viên MJIT hướng dẫn học sinh Trường THPT Waseda (Nhật Bản) trải nghiệm văn hóa Việt"
