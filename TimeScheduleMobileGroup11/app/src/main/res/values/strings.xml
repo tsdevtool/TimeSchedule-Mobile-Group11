@@ -3,8 +3,8 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="next">Tiếp theo</string>
+    <string name="previous">Quay lại</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -48,5 +48,17 @@
     <string name="forgotPassword">Quên mật khẩu?</string>
     <string name="login">Đăng nhập</string>
     <string name="register">Đăng ký</string>
+    <string name="back">Trở về</string>
+    <string name="cancel">Hủy</string>
+    <string name="again">Thử lại</string>
+    <string name="updatePassword">Cập nhật mật khẩu</string>
+    <string name="notification">THÔNG BÁO</string>
+    <string name="toastStringEmpty">Vui lòng không để trống thông tin</string>
+    <string name="toastStringFormat">Vui lòng nhập thông tin đúng định dạng</string>
+    <string name="toastNotFoundEmail">Không tìm thấy email mà bạn đã nhập!! \n Vui lòng kiểm tra lại!!!</string>
+    <string name="toastCheckPasswordInEmail">Kiểm tra mật khẩu trong email của bạn</string>
+    <string name="toastUpdateFail">Cập nhật thất bại!!</string>
+    <string name="noSuccess">Thất bại</string>
+    <string name="error">Lỗi!!!</string>
 
 </resources>
