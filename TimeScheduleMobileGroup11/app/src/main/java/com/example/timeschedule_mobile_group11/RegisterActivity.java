@@ -114,6 +114,7 @@ public class RegisterActivity extends AppCompatActivity {
                         String userId = mAuth.getCurrentUser().getUid();
                         //Luu thong tin vao Firebase Database
                         saveUserData(userId, user);
+                        mAuth.signOut();
                     }else{
                         // Xử lý lỗi
                         Log.w("Đăng ký thất bại", "Đăng ký tài khoản không thành công", task.getException());
@@ -135,7 +136,9 @@ public class RegisterActivity extends AppCompatActivity {
                    public void run() {
                        loading.cancel();
                        sendRegisterAccount(user.getEmail(), user.getPassword());
+
                        startActivity(myIntent);
+
                        Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công!", Toast.LENGTH_SHORT).show();
                    }
                };
