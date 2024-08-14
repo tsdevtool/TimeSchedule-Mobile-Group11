@@ -1,4 +1,4 @@
-package com.example.timeschedule_mobile_group11;
+package com.example.timeschedule_mobile_group11.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.models.Event;
+import com.example.timeschedule_mobile_group11.R;
 
 import java.util.List;
 

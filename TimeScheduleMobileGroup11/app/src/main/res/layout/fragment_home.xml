@@ -148,7 +148,8 @@
                         android:text="Sinh viên MJIT hướng dẫn học sinh Trường THPT Waseda (Nhật Bản) trải nghiệm văn hóa Việt"
                         android:textSize="17sp"
                         android:textStyle="bold"
-                        android:singleLine="true"/>
+                        android:singleLine="true"
+                        android:layout_marginEnd="20dp"/>
                 </LinearLayout>
 
                 <!--        thong tin khac-->
@@ -158,12 +159,27 @@
                     android:orientation="vertical"
                     android:padding="15dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Sự kiện khác"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sự kiện khác"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            android:id="@+id/tvMoreEvents"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Xem thêm"
+                            android:textSize="18dp"
+                            android:textColor="#2196F3"
+                            android:gravity="end"
+                            android:layout_marginEnd="20dp"/>
+                    </LinearLayout>
 
                     <ListView
                         android:id="@+id/lvEvents"

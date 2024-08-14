@@ -1,8 +1,5 @@
 package com.example.timeschedule_mobile_group11.fragment;
 
-import android.app.ActivityOptions;
-import android.app.Dialog;
-
 import android.content.Context;
 
 import android.app.ProgressDialog;
@@ -12,24 +9,21 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 
 import com.example.models.Event;
-import com.example.timeschedule_mobile_group11.EventAdapter;
+import com.example.timeschedule_mobile_group11.EventActivity;
+import com.example.timeschedule_mobile_group11.adapter.EventAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.timeschedule_mobile_group11.LoginActivity;
 
-import com.example.timeschedule_mobile_group11.MainActivity;
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.FragmentHomeBinding;
 import com.example.timeschedule_mobile_group11.dialog.DialogContact;
@@ -43,9 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -88,6 +80,10 @@ public class HomeFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         void onImageClicked();
         void onImageClickedToEventFragment();
+
+        void OnClickedSchedule();
+
+        void OnClickedSaveEvents();
     }
 
     @Override
@@ -157,6 +153,13 @@ public class HomeFragment extends Fragment {
                 if (listener != null) {
                     listener.onImageClickedToEventFragment();
                 }
+            }
+        });
+        binding.tvMoreEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EventActivity.class);
+                startActivity(intent);
             }
         });
         showAvatar();
