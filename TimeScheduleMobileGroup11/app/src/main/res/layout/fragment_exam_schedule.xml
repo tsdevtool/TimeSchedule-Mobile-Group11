@@ -5,13 +5,50 @@
     android:layout_height="match_parent"
     tools:context=".fragment.ExamScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Exam Schedule"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <!-- Header -->
+
+        <!-- List of Events -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageButton
+                android:id="@+id/btnBacktoHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/back_white_40" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:padding="10dp"
+                android:text="Danh sách sự kiện"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvEvents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="1dp"/>
+    </LinearLayout>
 
 </FrameLayout>

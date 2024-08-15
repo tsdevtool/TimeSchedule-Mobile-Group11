@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ScheduleFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:background="@color/background">
+
+            <ImageButton
+                android:id="@+id/btnBacktoHome"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/back_white_40" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:padding="10dp"
+                android:text="Chi tiết sự kiện"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <!-- Event Image -->
+        <ImageView
+            android:id="@+id/event_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/event"
+            android:contentDescription="Event Image" />
+
+        <!-- Event Details -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tiêu đề sự kiện   "
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"/>
+
+            <!-- Description -->
+            <TextView
+                android:id="@+id/event_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mô tả "
+                android:layout_marginTop="8dp"
+                android:textSize="26sp"/>
+
+            <!-- Location -->
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa điểm"
+                android:layout_marginTop="8dp"
+                android:textSize="26sp" />
+
+            <!-- Lesson Begin -->
+            <TextView
+                android:id="@+id/lesson_begin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lớp học bắt đầu : 9:00 AM"
+                android:layout_marginTop="8dp"
+                android:textSize="26sp" />
+
+            <!-- Classroom Code -->
+            <TextView
+                android:id="@+id/classroom_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mã lớp học: ABC123"
+                android:layout_marginTop="8dp"
+                android:textSize="26sp" />
+
+            <!-- Time -->
+            <TextView
+                android:id="@+id/event_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thời gian: 10:00 AM - 12:00 PM"
+                android:layout_marginTop="8dp"
+                android:textSize="26sp" />
+        </LinearLayout>
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng kí tham gia"
+            android:textSize="26sp"
+            android:layout_marginTop="6dp"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+</FrameLayout>

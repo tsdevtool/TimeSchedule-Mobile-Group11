@@ -91,14 +91,14 @@ public class LoginActivity extends AppCompatActivity {
         //Xu ly firebase
         Firebase.loadFirebase();
 
-                loading.show();
-                Handler handler= new Handler();
-                Runnable runnable= new Runnable() {
-                    @Override
-                    public void run() {
-                        loading.cancel();
-                        startActivity(myIntent);
-                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+//                loading.show();
+//                Handler handler= new Handler();
+//                Runnable runnable= new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        loading.cancel();
+//                        startActivity(myIntent);
+//                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
         //Xu ly dang nhap
         addEvents();
@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login() {
         String email, password;
-        email = binding.edtUserCode.getText().toString();
+        email = binding.edtUser.getText().toString();
         password = binding.edtPassword.getText().toString();
 
         if(TextUtils.isEmpty(email) ){
