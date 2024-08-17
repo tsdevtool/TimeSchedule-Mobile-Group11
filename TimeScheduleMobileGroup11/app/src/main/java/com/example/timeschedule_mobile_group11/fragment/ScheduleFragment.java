@@ -3,6 +3,8 @@ package com.example.timeschedule_mobile_group11.fragment;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -119,9 +122,77 @@ public class ScheduleFragment extends Fragment {
 
 //        getClassIdOfUser();
         getSubjectDetails();
+        showSubjectDetails();
         return binding.getRoot();
 
 
+    }
+
+    private void showSubjectDetails() {
+        binding.lvSubjects.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                SubjectDetail subjectDetail = subjectDetails.get(i);
+                String subjectId = subjectDetail.getSubjectId();
+                subjectRef.child(subjectId).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Subject subject = new Subject();
+                            subject.setId(subjectDetail.getSubjectId());
+                            subject.setCode(snapshot.child(Firebase.COL_SUJECT_CODE).getValue(String.class));
+                            subject.setName(snapshot.child(Firebase.COL_SUBJECT_NAME).getValue(String.class));
+                            Object numbOfCreadit = snapshot.child(Firebase.COL_SUJECT_NUMBER_OF_CREADIT).getValue();
+                            if (numbOfCreadit instanceof Long){
+                                subject.setNumberOfCredit(((Long)numbOfCreadit).intValue());
+                            }else if(numbOfCreadit instanceof Integer){
+                                subject.setNumberOfCredit((Integer) numbOfCreadit);
+                            }
+                            Object numbOfLession = snapshot.child(Firebase.COL_SUJECT_NUMBER_OF_LESSION).getValue();
+                            if(numbOfLession instanceof Long){
+                                subject.setNumberOfLesson(((Long) numbOfLession).intValue());
+                            }else {
+                                subject.setNumberOfLesson((Integer) numbOfLession);
+                            }
+
+                            showDialogSubject(subjectDetail, subject);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        notification(R.string.toastNoData);
+                    }
+                });
+            }
+        });
+    }
+
+    private void showDialogSubject(SubjectDetail subjectDetail, Subject subject) {
+        Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.subject_profile_dialog);
+        //Code
+        TextView txtSubjectName = dialog.findViewById(R.id.txtSubjectName);
+        txtSubjectName.setText(subject.getName());
+        TextView txtSubjectCode = dialog.findViewById(R.id.txtSubjectCode);
+        txtSubjectCode.setText(subject.getCode());
+        TextView txtSubjectLession = dialog.findViewById(R.id.txtLessionBegin);
+        txtSubjectLession.setText(subjectDetail.getLessionBegin() + " - " + (subjectDetail.getLessionBegin() + 5));
+        TextView txtDateStudy = dialog.findViewById(R.id.txtDate);
+        txtDateStudy.setText(subjectDetail.getTime());
+        TextView txtNumberOfCreadit = dialog.findViewById(R.id.txtNumberOfCreadit);
+        txtNumberOfCreadit.setText(subject.getNumberOfCredit() + "");
+        TextView txtNumberOfLession = dialog.findViewById(R.id.txtSubjectOfLession);
+        txtNumberOfLession.setText(subject.getNumberOfLesson() + "");
+        TextView txtTeacherCode = dialog.findViewById(R.id.txtTeacherCode);
+        txtTeacherCode.setText("Not found");
+        TextView txtTeacherName = dialog.findViewById(R.id.txtTeacherName);
+        txtTeacherName.setText("Not found");
+
+
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 
     private void showSubjectInformation(List<SubjectDetail> subjectDetails, String classId) {

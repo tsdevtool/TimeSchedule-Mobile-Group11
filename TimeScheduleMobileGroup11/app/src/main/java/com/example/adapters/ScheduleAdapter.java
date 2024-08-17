@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.models.Subject;
 import com.example.models.SubjectDetail;
@@ -52,7 +53,11 @@ public class ScheduleAdapter extends ArrayAdapter<SubjectDetail> {
         this.classId = classId;
     }
 
-
+    @Nullable
+    @Override
+    public SubjectDetail getItem(int position) {
+        return subjectDetails.get(position);
+    }
 
     @Override
     public long getItemId(int i) {

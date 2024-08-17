@@ -63,5 +63,13 @@
     <string name="toastNoData">Không tìm thấy dữ liệu!!!</string>
     <string name="classroom">Phòng</string>
     <string name="classs">Lớp</string>
+    <string name="nameSubject">Tên môn: </string>
+    <string name="subjectCode">Mã môn học:</string>
+    <string name="lession">Tiết: </string>
+    <string name="dateStudy">Ngày học: </string>
+    <string name="numberOfCreadit">Số tín chỉ: </string>
+    <string name="numberOfLession">Số buổi học:</string>
+    <string name="TeacherCode">Mã giảng viên:</string>
+    <string name="teacherName">Tên giảng viên:</string>
 
 </resources>
