@@ -68,6 +68,7 @@
                 android:layout_height="1dp"
                 android:background="#cccccc"
                 android:layout_marginBottom="16dp"/>
+            //
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,6 +88,27 @@
                 android:layout_height="1dp"
                 android:background="#cccccc"
                 android:layout_marginBottom="16dp"/>
+            //
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giới tính"
+                android:textSize="14sp"
+                android:textColor="#888888"/>
+            <TextView
+                android:id="@+id/txtSex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="24sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#cccccc"
+                android:layout_marginBottom="16dp"/>
+            //
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -107,36 +129,95 @@
                 android:background="#cccccc"
                 android:layout_marginBottom="16dp"/>
 
-
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
             <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nhập mật khẩu hiện tại "
+                android:textSize="14sp"
+                android:textColor="#888888"/>
+
+            <EditText
+                android:id="@+id/txtCurrentPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="16dp"
+                android:inputType="textPassword"
+                android:textSize="24sp"
+                android:layout_toStartOf="@id/btnShowCurrentPassword"/>
+
+            <ImageButton
+                android:id="@+id/btnShowCurrentPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mật khẩu mới "
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/invisible_26"
+                android:contentDescription="Toggle Password Visibility"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nhập mật khẩu mới "
                 android:textSize="14sp"
                 android:textColor="#888888"/>
             <EditText
                 android:id="@+id/txtNewPassword"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:inputType="textPassword"
                 android:textSize="24sp"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="16dp" />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#cccccc"
-                android:layout_marginBottom="16dp"/>
-            <Button
-                android:id="@+id/btnChangeAvatar"
+                android:layout_marginBottom="16dp"
+                android:layout_toStartOf="@id/btnShowPassword"/>
+            <ImageButton
+                android:id="@+id/btnShowPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lưu ảnh"/>
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/invisible_26"
+                android:contentDescription="Toggle Password Visibility"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#cccccc"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp">
             <Button
                 android:id="@+id/btnChangePassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Đổi mật khẩu"/>
+                android:layout_weight="1"
+                android:text="Đổi mật khẩu"
+                android:layout_marginEnd="10dp"/>
+            <Button
+                android:id="@+id/btnLogOut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/red"
+                android:text="Đăng xuất "/>
+
         </LinearLayout>
     </LinearLayout>
 
