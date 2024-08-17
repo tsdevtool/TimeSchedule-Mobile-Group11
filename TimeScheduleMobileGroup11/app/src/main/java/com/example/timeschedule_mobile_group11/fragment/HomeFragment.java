@@ -173,6 +173,7 @@ public class HomeFragment extends Fragment {
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
         addEvents();
 
+        
         loadNewEvent();
         return binding.getRoot();
 
@@ -286,7 +287,7 @@ public class HomeFragment extends Fragment {
                 FirebaseAuth.getInstance().signOut();
                 // Khởi động lại LoginActivity
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
             }

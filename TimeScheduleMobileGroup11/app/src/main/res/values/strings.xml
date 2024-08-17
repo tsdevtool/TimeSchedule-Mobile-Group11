@@ -60,5 +60,8 @@
     <string name="toastUpdateFail">Cập nhật thất bại!!</string>
     <string name="noSuccess">Thất bại</string>
     <string name="error">Lỗi!!!</string>
+    <string name="toastNoData">Không tìm thấy dữ liệu!!!</string>
+    <string name="classroom">Phòng</string>
+    <string name="classs">Lớp</string>
 
 </resources>
