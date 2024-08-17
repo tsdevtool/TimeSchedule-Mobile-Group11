@@ -1,5 +1,6 @@
 package com.example.timeschedule_mobile_group11.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.timeschedule_mobile_group11.EventActivity;
+import com.example.timeschedule_mobile_group11.ProfileActivity;
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
 import com.example.timeschedule_mobile_group11.databinding.FragmentOtherBinding;
@@ -23,7 +26,11 @@ import com.example.utils.Contact;
  * create an instance of this fragment.
  */
 public class OtherFragment extends Fragment {
+
+    //Khai báo biến toàn cục
     FragmentOtherBinding binding;
+    private HomeFragment.OnFragmentInteractionListener listener;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -35,6 +42,16 @@ public class OtherFragment extends Fragment {
 
     public OtherFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            listener = (HomeFragment.OnFragmentInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener");
+        }
     }
 
     /**
@@ -99,6 +116,42 @@ public class OtherFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //Chuyển hướng fragment to fragment bằng cách kế thừa các hàm chuyển chuyển hướng bên homefragment
+        binding.btnSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onImageClicked();
+                }
+            }
+        });
+
+        binding.btnSaveEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onImageClickedToEventFragment();
+                }
+            }
+        });
+
+        //Chuyển hướng fargment to activity
+        binding.btnEvents.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getActivity(), EventActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        binding.layoutUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(intent);
             }
         });
 

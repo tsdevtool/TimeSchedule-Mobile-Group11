@@ -1,4 +1,4 @@
-package com.example.timeschedule_mobile_group11;
+package com.example.timeschedule_mobile_group11.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+
+import com.example.timeschedule_mobile_group11.R;
 
 public class AloadingDialog extends Dialog {
 

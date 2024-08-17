@@ -4,6 +4,8 @@ package com.example.timeschedule_mobile_group11;
 import static android.app.PendingIntent.getActivity;
 
 import android.os.Bundle;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -20,7 +22,20 @@ public class ProfileActivity extends AppCompatActivity {
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        addEvents();
 
+
+    }
+
+    private void addEvents() {
+
+        //trỏ về trang fragment trước đó
+        binding.imvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setUserInformation(){
