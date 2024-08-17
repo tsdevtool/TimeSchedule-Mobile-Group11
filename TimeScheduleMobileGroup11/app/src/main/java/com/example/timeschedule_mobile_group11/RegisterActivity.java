@@ -41,10 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
 
-    private String receiver;
     private String subject;
     private String body;
-    private JavaMailAPI javaMailAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                         String userId = mAuth.getCurrentUser().getUid();
                         //Luu thong tin vao Firebase Database
                         saveUserData(userId, user);
+                        mAuth.signOut();
                     }else{
                         // Xử lý lỗi
                         Log.w("Đăng ký thất bại", "Đăng ký tài khoản không thành công", task.getException());
@@ -119,24 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void saveUserData(String userId, User user) {
         usersRef.child(userId).setValue(user).addOnCompleteListener(task -> {
            if(task.isSuccessful()){
-               //Gui email thong tin dang nhap cho sinh vien
-               // Tạo nội dung email
-//               FirebaseUser firebaseUser = mAuth.getCurrentUser();
-//               if(firebaseUser!=null){
-//                   firebaseUser.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                       @Override
-//                       public void onComplete(@NonNull Task<Void> task) {
-//                           if(task.isSuccessful()){
-//                               Toast.makeText(RegisterActivity.this, "Đã gửi email xác thực về tài khoản", Toast.LENGTH_SHORT).show();
-//                           }else{
-//                               Toast.makeText(RegisterActivity.this, "Lỗi khi gửi email xác thực", Toast.LENGTH_SHORT).show();
-//                           }
-//                       }
-//                   });
-//               }
 
-//               new MailUtils().sendRegisterAccount(RegisterActivity.this, user.getEmail(), user.toString());
-                sendRegisterAccount(user.getEmail(), user.getPassword());
 
                //Thong bao thanh cong
                Intent myIntent =  new Intent(RegisterActivity.this, LoginActivity.class);
@@ -146,7 +128,10 @@ public class RegisterActivity extends AppCompatActivity {
                    @Override
                    public void run() {
                        loading.cancel();
+                       sendRegisterAccount(user.getEmail(), user.getPassword());
+
                        startActivity(myIntent);
+
                        Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công!", Toast.LENGTH_SHORT).show();
                    }
                };
@@ -158,56 +143,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-//    private void addEvents() {
-//        binding.btnRegisterSucess.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                String email, password;
-//                email = binding.edtUsername.getText().toString().trim();
-////                password = Password.generatePassword(12).trim();
-//                password = binding.edtFullname.getText().toString().trim();
-//
-//                if(TextUtils.isEmpty(email) ){
-//                    Toast.makeText(RegisterActivity.this, "Vui lòng nhập email hoặc mã số của bạn!!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                if(TextUtils.isEmpty(password) ){
-//                    Toast.makeText(RegisterActivity.this, "Vui lòng nhập mật khẩu!!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if(task.isSuccessful()){
-//                            Intent myIntent =  new Intent(RegisterActivity.this, LoginActivity.class);
-//                            loading.show();
-//                            Handler handler= new Handler();
-//                            Runnable runnable= new Runnable() {
-//                                @Override
-//                                public void run() {
-//                                    loading.cancel();
-//                                    startActivity(myIntent);
-//                                    Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công!", Toast.LENGTH_SHORT).show();
-//
-//                                }
-//                            };
-//                            handler.postDelayed(runnable,2000);
-//                            finishAffinity();
-//                        }else{
-//
-//                            Toast.makeText(RegisterActivity.this, "Tạo tài khoản không thành công!", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                });
-//
-//
-//            }
-//        });
-//    }
 
     private void TimeHandling() {
         calendar= Calendar.getInstance();
