@@ -11,12 +11,18 @@ import android.widget.TextView;
 import com.example.models.Event;
 import com.example.timeschedule_mobile_group11.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class EventAdapter extends ArrayAdapter<Event> {
 
     private Context context;
     private List<Event> events;
+    private SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+    private SimpleDateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
 
     public EventAdapter(Context context, List<Event> events) {
         super(context, 0, events);
@@ -38,7 +44,8 @@ public class EventAdapter extends ArrayAdapter<Event> {
         TextView tvEventTitle = convertView.findViewById(R.id.tvTitleEvent);
         tvEventTitle.setText(event.getTitle());
         TextView tvDateEvent = convertView.findViewById(R.id.tvDateEvent);
-        tvDateEvent.setText(event.getTime());
+        String formattedDate = formatDate(event.getTime());
+        tvDateEvent.setText(formattedDate);
 
         // Cập nhật hình ảnh sự kiện
         ImageView imvEventImage = convertView.findViewById(R.id.imvLvImage);
@@ -54,5 +61,14 @@ public class EventAdapter extends ArrayAdapter<Event> {
 
     private int getDrawableResourceByName(Context context, String imageName) {
         return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
+    }
+    private String formatDate(String dateString) {
+        try {
+            Date date = inputFormat.parse(dateString);
+            return outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return dateString; // Return original if parsing fails
+        }
     }
 }
