@@ -8,6 +8,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
 
     <application
         android:allowBackup="true"
@@ -20,13 +23,16 @@
         android:theme="@style/Theme.TimeScheduleMobileGroup11"
         tools:targetApi="31">
         <activity
-
+            android:name=".fragment.UserFragment"
+            android:exported="false" />
+        <activity
             android:name=".DetailEventActivity"
             android:exported="false" />
         
         <activity
             android:name=".EventActivity"
-
+            android:exported="false" />
+        <activity
             android:name=".dialog.NotificationDialog"
             android:exported="false" />
         <activity

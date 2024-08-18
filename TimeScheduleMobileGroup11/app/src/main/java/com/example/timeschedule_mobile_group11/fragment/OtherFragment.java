@@ -13,12 +13,19 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.timeschedule_mobile_group11.EventActivity;
 import com.example.timeschedule_mobile_group11.ProfileActivity;
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
 import com.example.timeschedule_mobile_group11.databinding.FragmentOtherBinding;
 import com.example.utils.Contact;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,16 +93,60 @@ public class OtherFragment extends Fragment {
     }
 
 
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        binding = FragmentOtherBinding.inflate(getLayoutInflater());
+//        addEvents();
+//        // Inflate the layout for this fragment
+//        return binding.getRoot();
+//
+//    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = FragmentOtherBinding.inflate(getLayoutInflater());
-        addEvents();
+        binding = FragmentOtherBinding.inflate(inflater, container, false);
+
+        // Lấy userId của người dùng hiện tại
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        // Truy vấn thông tin người dùng từ Firebase Database
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Lấy dữ liệu người dùng từ Firebase
+                String fullName = dataSnapshot.child("fullName").getValue(String.class);
+                String userCode = dataSnapshot.child("userCode").getValue(String.class);
+                String email = dataSnapshot.child("email").getValue(String.class);
+                String photoUrl = dataSnapshot.child("photoUrl").getValue(String.class);
+                // Kiểm tra và hiển thị ảnh đại diện nếu có
+                if (photoUrl != null) {
+                    Glide.with(OtherFragment.this)
+                            .load(photoUrl)
+                            .into(binding.imvAvatar);
+                } else {
+                    // Bạn có thể đặt một ảnh đại diện mặc định ở đây nếu không có ảnh nào được lưu
+                    binding.imvAvatar.setImageResource(R.drawable.logo_app);
+                }
+                // Cập nhật giao diện với dữ liệu người dùng
+                binding.txtFullName.setText(fullName);
+                binding.txtUserCode.setText(userCode);
+                binding.txtEmail.setText(email);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Xử lý lỗi nếu có
+                Toast.makeText(getContext(), "Lỗi khi lấy dữ liệu người dùng", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        addEvents(); // Đảm bảo rằng các sự kiện khác vẫn hoạt động
+
         // Inflate the layout for this fragment
         return binding.getRoot();
-
     }
-
     private void addEvents() {
         binding.btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +167,13 @@ public class OtherFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Tính năng đang phát triển", Toast.LENGTH_SHORT).show();
+            }
+        });
+        binding.btnUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), UserFragment.class);
+                startActivity(intent);
             }
         });
 
