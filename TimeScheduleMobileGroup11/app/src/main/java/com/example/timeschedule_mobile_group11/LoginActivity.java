@@ -6,25 +6,22 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import android.text.TextUtils;
-import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 
-import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityLoginBinding;
+import com.example.timeschedule_mobile_group11.dialog.AloadingDialog;
+import com.example.utils.Util;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -35,62 +32,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Date;
-
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
     AloadingDialog loading;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference usersRef = database.getReference("users");
+
     boolean isPasswordVisible = false;
-    //Khai bao cac bien lien quan toi database
-    private FirebaseDatabase database;
-    private DatabaseReference myDef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        // Khởi tạo Firebase
-//        database = FirebaseDatabase.getInstance();
-//        myDef = database.getReference().child("user");
-
-//        // Tạo đối tượng User mới
-//        String id = myDef.push().getKey();
-//        String username = "newuser";
-//        String fullname = "New User";
-//        String password = "newpassword123";
-//        String avatar = "avatar_url";
-//        String email = "newuser@example.com";
-//        Date dayAdmission = new Date();
-//        int classId = 102;
-//        int facultyId = 11;
-//        int roleId = 2;
-//
-//        User newUser = new User(id, username, fullname, password, avatar, email, dayAdmission, classId, facultyId, roleId);
-//        myDef.child(id).setValue(newUser);
-
-
-
-
-        // Hiển thị mật khẩu
-
-        //Cách 1 ẩn hiển password bằng checkbox có note bên activity_login
-        /*binding.chkShowPass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    // Show password
-                    binding.edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                } else {
-                    // Hide password
-                    binding.edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-                // Move cursor to end of text
-                binding.edtPassword.setSelection(binding.edtPassword.getText().length());
-            }
-        });*/
 
         //Cách 2: Ẩn hiện icon bằng password
         binding.edtPassword.setOnTouchListener(new View.OnTouchListener() {
@@ -118,22 +74,17 @@ public class LoginActivity extends AppCompatActivity {
 
         loading = new AloadingDialog(this);
 
+        init();
 
-
-        //Xu ly firebase
-//        Firebase.loadFirebase();
-
-//                loading.show();
-//                Handler handler= new Handler();
-//                Runnable runnable= new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        loading.cancel();
-//                        startActivity(myIntent);
-//                        Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-
-        //Xu ly dang nhap
         addEvents();
+    }
+    private void init(){
+        Intent intent = getIntent();
+        int notificationId = intent.getIntExtra(Util.NOTIFICATION, 0);
+        if(notificationId == 1){
+            notifcation(R.string.toastCheckPasswordInEmail);
+            binding.edtUser.setText(intent.getStringExtra(Util.EMAIL));
+        }
     }
 
     private void addEvents() {
@@ -146,6 +97,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         binding.btnForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent =  new Intent(LoginActivity.this, FogotPasswordActivity.class);
+                startActivity(myIntent);
+            }
+        });
+        binding.imvLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent =  new Intent(LoginActivity.this, RegisterActivity.class);
@@ -183,6 +141,7 @@ public class LoginActivity extends AppCompatActivity {
                         public void run() {
                             loading.cancel();
                             startActivity(intent);
+                            updateInfomation(email, password);
                             finish();
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
 
@@ -196,5 +155,44 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void updateInfomation(String email, String password) {
+        usersRef.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snap: snapshot.getChildren()){
+                    String userId = snap.getKey();
+
+                    usersRef.child(userId).child("password").setValue(password)
+                            .addOnCompleteListener(task -> {
+
+                            });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                notifcation(R.string.error);
+            }
+        });
+    }
+
+    private void notifcation(int notification){
+        Dialog dialog = new Dialog(LoginActivity.this);
+        dialog.setContentView(R.layout.activity_notification_dialog);
+        Button back = dialog.findViewById(R.id.btnBack);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        TextView notificationBody = dialog.findViewById(R.id.txtNotification);
+        notificationBody.setText(notification);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCanceledOnTouchOutside(false);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
     }
 }

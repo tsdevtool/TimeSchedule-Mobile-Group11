@@ -3,7 +3,7 @@ package com.example.models;
 import java.io.Serializable;
 
 public class Subject implements Serializable {
-    private int id;
+    private String id;
     private String code; //Ma mon hoc vi du CMP177
     private String name; //Ten mon hoc vi du Lap trinh thiet bi di dong
     private int numberOfCredit; //So tin chi
@@ -12,7 +12,7 @@ public class Subject implements Serializable {
     public Subject() {
     }
 
-    public Subject(int id, int numberOfLesson, int numberOfCredit, String name, String code) {
+    public Subject(String id, int numberOfLesson, int numberOfCredit, String name, String code) {
         this.id = id;
         this.numberOfLesson = numberOfLesson;
         this.numberOfCredit = numberOfCredit;
@@ -52,11 +52,11 @@ public class Subject implements Serializable {
         this.code = code;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }
