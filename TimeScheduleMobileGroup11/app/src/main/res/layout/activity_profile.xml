@@ -15,19 +15,31 @@
         android:background="@drawable/custom_bg_register"
         android:orientation="vertical"
         android:gravity="center">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="40dp"
-            android:drawableLeft="@drawable/back_white_40"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:text="Thông tin tài khoản"
-            android:textColor="#FFFFFFFF"
-            android:textSize="30sp" />
+            android:layout_marginBottom="40dp">
+
+            <ImageView
+                android:id="@+id/imvBack"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/back_white_40"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:padding="10dp"
+                android:text="Thông tin tài khoản"
+                android:textColor="#FFFFFFFF"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imvAvatar"

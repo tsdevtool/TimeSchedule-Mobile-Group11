@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_dialog_contact"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nameSubject"
+            android:textSize="28sp"
+            android:textStyle="bold"
+
+            />
+        <TextView
+            android:id="@+id/txtSubjectName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subjectCode"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            />
+        <TextView
+            android:id="@+id/txtSubjectCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lession"
+            android:textSize="24sp"
+            android:textStyle="bold"
+
+            />
+        <TextView
+            android:id="@+id/txtLessionBegin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dateStudy"
+            android:textSize="24sp"
+
+            />
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="24sp"
+
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberOfCreadit"
+            android:textSize="24sp"
+            android:textStyle="italic"
+            />
+        <TextView
+            android:id="@+id/txtNumberOfCreadit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="24sp"
+            android:textStyle="italic"
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numberOfLession"
+            android:textSize="24sp"
+            android:textStyle="italic"
+
+            />
+
+        <TextView
+            android:id="@+id/txtSubjectOfLession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textStyle="italic"
+            android:textSize="24sp"
+
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/TeacherCode"
+            android:textSize="24sp"
+            android:textStyle="italic"
+
+            />
+
+        <TextView
+            android:id="@+id/txtTeacherCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="24sp"
+
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/teacherName"
+            android:textSize="24sp"
+            android:textStyle="italic"
+
+            />
+
+        <TextView
+            android:id="@+id/txtTeacherName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subject's name"
+            android:textSize="24sp"
+
+            android:layout_marginStart="8dp"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

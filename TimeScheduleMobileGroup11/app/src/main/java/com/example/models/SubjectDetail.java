@@ -6,21 +6,21 @@ import java.util.Date;
 public class SubjectDetail implements Serializable {
     private int lessionBegin; //Tiet bat dau
     private String classroomCode; //Ma lop hoc
-    private Date time; //Ngay hoc
-    private int statusId;
-    private int classId;
-    private int subjectId;
+    private String time; //Ngay hoc
+    private String statusId;
+    private String classId;
+    private String subjectId;
 
     public SubjectDetail() {
     }
 
-    public SubjectDetail(int lessionBegin, String classroomCode, Date time, int statusId, int classId, int subjectId) {
+    public SubjectDetail(int lessionBegin, String subjectId, String classId, String statusId, String time, String classroomCode) {
         this.lessionBegin = lessionBegin;
-        this.classroomCode = classroomCode;
-        this.time = time;
-        this.statusId = statusId;
-        this.classId = classId;
         this.subjectId = subjectId;
+        this.classId = classId;
+        this.statusId = statusId;
+        this.time = time;
+        this.classroomCode = classroomCode;
     }
 
     public int getLessionBegin() {
@@ -31,35 +31,35 @@ public class SubjectDetail implements Serializable {
         this.lessionBegin = lessionBegin;
     }
 
-    public int getSubjectId() {
+    public String getSubjectId() {
         return subjectId;
     }
 
-    public void setSubjectId(int subjectId) {
+    public void setSubjectId(String subjectId) {
         this.subjectId = subjectId;
     }
 
-    public int getClassId() {
+    public String getClassId() {
         return classId;
     }
 
-    public void setClassId(int classId) {
+    public void setClassId(String classId) {
         this.classId = classId;
     }
 
-    public int getStatusId() {
+    public String getStatusId() {
         return statusId;
     }
 
-    public void setStatusId(int statusId) {
+    public void setStatusId(String statusId) {
         this.statusId = statusId;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

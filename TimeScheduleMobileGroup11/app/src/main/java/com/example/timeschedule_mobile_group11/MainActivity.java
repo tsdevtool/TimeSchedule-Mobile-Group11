@@ -1,35 +1,21 @@
 package com.example.timeschedule_mobile_group11;
 
 
-import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.models.Event;
-import com.example.models.User;
 import com.example.timeschedule_mobile_group11.databinding.ActivityMainBinding;
-import com.example.timeschedule_mobile_group11.dialog.DialogContact;
 import com.example.timeschedule_mobile_group11.fragment.ExamScheduleFragment;
 import com.example.timeschedule_mobile_group11.fragment.HomeFragment;
 import com.example.timeschedule_mobile_group11.fragment.OtherFragment;
 import com.example.timeschedule_mobile_group11.fragment.ScheduleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnFragmentInteractionListener {
@@ -128,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
 
 
+    //Chuyển hướng fragment tương ứng khi click các nút tương ứng
     private void replaceFragment(Fragment fragment){
         //FragmentManager fragmentManager= getSupportFragmentManager();
         FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
@@ -144,6 +131,17 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
 
     @Override
     public void onImageClickedToEventFragment() {
+        replaceFragment(new OtherFragment());
+        bottomNavigationView.setSelectedItemId(R.id.examSchedule);
+    }
+
+    @Override
+    public void OnClickedSchedule(){
+        replaceFragment(new ScheduleFragment());
+        bottomNavigationView.setSelectedItemId(R.id.schedule);
+    }
+    @Override
+    public void OnClickedSaveEvents(){
         replaceFragment(new OtherFragment());
         bottomNavigationView.setSelectedItemId(R.id.examSchedule);
     }

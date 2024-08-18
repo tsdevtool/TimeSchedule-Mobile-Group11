@@ -5,8 +5,8 @@
     android:padding="10dp">
     <ImageView
         android:id="@+id/imvLvImage"
-        android:layout_width="120dp"
-        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="80dp"
         android:src="@drawable/img"/>
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,12 +30,6 @@
             android:layout_height="wrap_content"
             android:text="ngày sự kiện ra mắt"
             android:layout_margin="5dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#908D8D"
-            android:alpha="0.5"
-            android:layout_marginTop="10dp"/>
 
 
     </LinearLayout>

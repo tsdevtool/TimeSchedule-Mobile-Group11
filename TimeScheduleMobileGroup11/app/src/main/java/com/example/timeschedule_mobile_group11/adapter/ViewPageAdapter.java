@@ -1,4 +1,4 @@
-package com.example.timeschedule_mobile_group11;
+package com.example.timeschedule_mobile_group11.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

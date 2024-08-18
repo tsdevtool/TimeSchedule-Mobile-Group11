@@ -26,10 +26,18 @@
             android:name=".fragment.UserFragment"
             android:exported="false" />
         <activity
+            android:name=".DetailEventActivity"
+            android:exported="false" />
+        
+        <activity
+            android:name=".EventActivity"
+            android:exported="false" />
+        <activity
             android:name=".dialog.NotificationDialog"
             android:exported="false" />
         <activity
             android:name=".FogotPasswordActivity"
+
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

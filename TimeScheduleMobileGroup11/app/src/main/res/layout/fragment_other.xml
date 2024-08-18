@@ -17,6 +17,7 @@
 
         <!-- User Information -->
         <LinearLayout
+            android:id="@+id/layoutUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -88,7 +89,7 @@
 
 
             <Button
-                android:id="@+id/btnLop"
+                android:id="@+id/btnSchedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -96,11 +97,11 @@
                 android:gravity="start|center_vertical"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
-                android:text="Lớp học"
+                android:text="Thời khóa biểu"
                 android:textColor="@color/black" />
 
             <Button
-                android:id="@+id/btnSukien"
+                android:id="@+id/btnEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sự kiện"
@@ -112,10 +113,10 @@
             android:paddingEnd="16dp" />
 
             <Button
-                android:id="@+id/btnLichthi"
+                android:id="@+id/btnSaveEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Lịch thi"
+                android:text="Sự kiện đã đăng ký"
                 android:textColor="@color/black"
                 android:drawableLeft="@drawable/exam_schedule"
             android:background="@android:color/transparent"
