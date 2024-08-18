@@ -212,7 +212,7 @@ public class UserFragment extends AppCompatActivity {
 
                 // Điều hướng người dùng về màn hình đăng nhập (hoặc bất kỳ màn hình nào bạn muốn)
                 Intent intent = new Intent(UserFragment.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa tất cả các activity trước đó khỏi stack
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa tất cả các activity trước đó khỏi stack
                 startActivity(intent);
                 finish(); // Kết thúc activity hiện tại
             }

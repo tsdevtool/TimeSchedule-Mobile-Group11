@@ -55,7 +55,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="phone number"
+                android:text="028 7101 2388"
                 android:layout_marginStart="12dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -78,7 +78,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="info@gmail.com"
+                android:text="khoa.cntt@hutech.edu.vn"
                 android:layout_marginStart="12dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -101,7 +101,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="www.facebook.com"
+                android:text="https://www.facebook.com/itHutech"
                 android:layout_marginStart="12dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -124,7 +124,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="https://timeschedule.com"
+                android:text="hutech.edu.vn/khoacntt/"
                 android:layout_marginStart="12dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"

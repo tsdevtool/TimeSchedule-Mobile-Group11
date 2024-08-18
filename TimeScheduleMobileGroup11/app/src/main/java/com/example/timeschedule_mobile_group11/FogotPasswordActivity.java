@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.timeschedule_mobile_group11.databinding.ActivityFogotPasswordBinding;
+import com.example.timeschedule_mobile_group11.dialog.AloadingDialog;
 import com.example.utils.JavaMailAPI;
 import com.example.utils.Password;
 import com.example.utils.Util;

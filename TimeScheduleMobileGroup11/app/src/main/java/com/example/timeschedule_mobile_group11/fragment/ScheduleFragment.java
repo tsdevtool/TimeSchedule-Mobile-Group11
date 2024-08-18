@@ -24,7 +24,6 @@ import com.example.adapters.ScheduleAdapter;
 import com.example.models.Subject;
 import com.example.models.SubjectDetail;
 import com.example.models.User;
-import com.example.timeschedule_mobile_group11.EventAdapter;
 import com.example.timeschedule_mobile_group11.MainActivity;
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.FragmentHomeBinding;
