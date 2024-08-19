@@ -1,5 +1,6 @@
 package com.example.timeschedule_mobile_group11;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -9,7 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.models.Event;
 import com.example.timeschedule_mobile_group11.databinding.ActivityEventBinding;
+import com.example.timeschedule_mobile_group11.fragment.AddEventFragment;
 import com.example.timeschedule_mobile_group11.fragment.CustomEventAdapter;
+import com.example.utils.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +33,9 @@ public class EventActivity extends AppCompatActivity {
     ActivityEventBinding binding;
     private DatabaseReference eventsRef;
     private CustomEventAdapter customEventAdapter;
-
+    String role;
+    DatabaseReference userRef;
+    FirebaseUser user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +43,41 @@ public class EventActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference(Firebase.USERS);
+
+        String userId = user.getUid();
+        userRef.child(userId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            role = snapshot.child(Firebase.USERS_ROLE_ID).getValue(String.class);
+                            if(role.equals("1")){
+                                binding.btnAdd.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(EventActivity.this, AddEventFragment.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }else{
+                                binding.btnAdd.setVisibility(View.INVISIBLE);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         LoadEvents();
 
     }
 
     private void LoadEvents() {
+
         binding.imvPhotoEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

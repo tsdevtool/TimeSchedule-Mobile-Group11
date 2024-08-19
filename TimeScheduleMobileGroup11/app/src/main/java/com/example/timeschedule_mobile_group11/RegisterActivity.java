@@ -194,6 +194,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
+                user.setClassId("class1");
+                user.setRoleId("2");
                 if(binding.chkMale.isChecked()){
                     user.setSex(true);
                 }else{
@@ -231,22 +233,23 @@ public class RegisterActivity extends AppCompatActivity {
 
                //Thong bao thanh cong
 
+               sendRegisterAccount(user.getEmail(), user.getPassword());
+
+               Intent myIntent =  new Intent(RegisterActivity.this, HomeFragment.class);
                loading.show();
                Handler handler= new Handler();
                Runnable runnable= new Runnable() {
                    @Override
                    public void run() {
                        loading.cancel();
-                       sendRegisterAccount(user.getEmail(), user.getPassword());
 
-                       Intent myIntent =  new Intent(RegisterActivity.this, HomeFragment.class);
                        startActivity(myIntent);
                         finish();
                        Toast.makeText(RegisterActivity.this, "Tạo tài khoản thành công!", Toast.LENGTH_SHORT).show();
                    }
                };
                handler.postDelayed(runnable,3000);
-               finish();
+//               finish();
            }else{
                Toast.makeText(this, "Đăng ký tài khoản thất bại", Toast.LENGTH_SHORT).show();
            }

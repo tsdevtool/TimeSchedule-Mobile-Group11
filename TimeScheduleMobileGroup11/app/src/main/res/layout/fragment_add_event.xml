@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.AddEventFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="THÊM SỰ KIỆN"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="30dp"/>
+
+            <EditText
+                android:id="@+id/txtTieuDe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Tiêu đề"
+                android:textSize="24sp"
+                android:singleLine="true"
+                />
+            <EditText
+                android:id="@+id/txtNoiDung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Nội dung"
+                android:textSize="24sp"
+                />
+            <EditText
+                android:id="@+id/txtDiaDiem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Địa điểm"
+                android:textSize="24sp"
+                android:singleLine="true"
+                />
+            <EditText
+                android:id="@+id/txtLopHoc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Lớp học"
+                android:textSize="24sp"
+                android:singleLine="true"
+                />
+            <EditText
+                android:id="@+id/txtThoiGian"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Thời gian"
+                android:textSize="24sp"
+                android:singleLine="true"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="10dp"
+                android:gravity="end">
+                <Button
+                    android:id="@+id/btnHinhAnh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/background"
+                    android:text="Ảnh"
+                    android:textSize="24sp"
+                    />
+                <Button
+                    android:id="@+id/btnHuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/red"
+                    android:text="Cancel"
+                    android:textSize="24sp"
+                    android:layout_marginStart="15dp"
+                    />
+                <Button
+                    android:id="@+id/btnDongY"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/logo"
+                    android:text="Ok"
+                    android:textSize="24sp"
+                    android:layout_marginStart="15dp"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

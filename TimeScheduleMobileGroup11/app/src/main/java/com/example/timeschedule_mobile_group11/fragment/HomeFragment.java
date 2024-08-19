@@ -180,12 +180,22 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+        loading = new AloadingDialog(getContext());
         // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
         contact = new DialogContact(requireContext());
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
         user = FirebaseAuth.getInstance().getCurrentUser();
         userRef = FirebaseDatabase.getInstance().getReference(Firebase.USERS);
-        loading = new AloadingDialog(getContext());
+        loading.show();
+        Handler handler= new Handler();
+        Runnable runnable= new Runnable() {
+            @Override
+            public void run() {
+                loading.cancel();
+
+            }
+        };
+        handler.postDelayed(runnable,2000);
         addEvents();
 
         
