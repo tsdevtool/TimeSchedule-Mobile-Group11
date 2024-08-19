@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.timeschedule_mobile_group11.fragment.ExamScheduleFragment;
+import com.example.timeschedule_mobile_group11.fragment.EventFragment;
 import com.example.timeschedule_mobile_group11.fragment.HomeFragment;
 import com.example.timeschedule_mobile_group11.fragment.OtherFragment;
 import com.example.timeschedule_mobile_group11.fragment.ScheduleFragment;
@@ -26,7 +26,7 @@ public class ViewPageAdapter extends FragmentStateAdapter {
             case 1:
                 return new ScheduleFragment();
             case 2:
-                return new ExamScheduleFragment();
+                return new EventFragment();
             case 3:
                 return new OtherFragment();
             default:

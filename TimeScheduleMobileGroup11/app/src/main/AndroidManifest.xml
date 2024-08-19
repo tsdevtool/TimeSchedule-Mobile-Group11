@@ -26,7 +26,7 @@
             android:name=".fragment.UserFragment"
             android:exported="false" />
         <activity
-            android:name=".DetailEventActivity"
+            android:name=".EventDetailActivity"
             android:exported="false" />
         
         <activity
