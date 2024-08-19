@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/access_color"
+    android:layout_margin="3dp">
+
+    <ImageView
+        android:id="@+id/imvImageEvent"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="4dp">
+        <TextView
+            android:id="@+id/txtTitleEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title of Event"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/txtLocationEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title of Event"
+            android:textSize="18sp"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="3dp"/>
+
+        <TextView
+            android:id="@+id/txtTimeEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title of Event"
+            android:textSize="18sp"
+            android:textStyle="italic"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
