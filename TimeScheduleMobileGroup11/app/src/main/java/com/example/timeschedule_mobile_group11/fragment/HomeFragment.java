@@ -47,6 +47,7 @@ import java.util.List;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 
 /**
@@ -272,15 +273,24 @@ public class HomeFragment extends Fragment {
         // Cập nhật tiêu đề sự kiện
         binding.tvTitleEvent.setText(event.getTitle());
 
-        // Lấy ID của tài nguyên drawable từ tên hình ảnh trong dữ liệu
-        int imageResId = getDrawableResourceByName(getContext(), event.getImage());
-
-        // Nếu tài nguyên tồn tại, thì cập nhật ImageView
-        if (imageResId != 0) {
-            binding.imvPhotoEvent.setImageResource(imageResId);
-        } else {
-            binding.imvPhotoEvent.setImageResource(R.drawable.img); // Hình ảnh mặc định nếu không tìm thấy
+        String imageUrl = event.getImage(); // URL lưu trong Firebase Realtime Database
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Picasso.get()
+                    .load(imageUrl)//
+                    .placeholder(R.drawable.img) // Hình ảnh hiển thị trong khi chờ tải
+                    .error(R.drawable.img) // Hình ảnh hiển thị khi xảy ra lỗi
+                    .into(binding.imvPhotoEvent);              // ImageView để hiển thị ảnh
         }
+
+        // Lấy ID của tài nguyên drawable từ tên hình ảnh trong dữ liệu
+//        int imageResId = getDrawableResourceByName(getContext(), event.getImage());
+//
+//        // Nếu tài nguyên tồn tại, thì cập nhật ImageView
+//        if (imageResId != 0) {
+//            binding.imvPhotoEvent.setImageResource(imageResId);
+//        } else {
+//            binding.imvPhotoEvent.setImageResource(R.drawable.img); // Hình ảnh mặc định nếu không tìm thấy
+//        }
     }
 
     private void showEventsExceptLatest(List<Event> eventList, Event latestEvent) {
