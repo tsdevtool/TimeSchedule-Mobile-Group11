@@ -71,5 +71,7 @@
     <string name="numberOfLession">Số buổi học:</string>
     <string name="TeacherCode">Mã giảng viên:</string>
     <string name="teacherName">Tên giảng viên:</string>
-
+    <string name="eventTitle">Sự kiện / Hoạt động</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

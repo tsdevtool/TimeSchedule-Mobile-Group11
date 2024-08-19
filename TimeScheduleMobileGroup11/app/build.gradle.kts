@@ -78,6 +78,7 @@ dependencies {
 
     //Xu ly hinh anh
     implementation ("com.google.firebase:firebase-storage:20.0.0")
+    implementation ("com.squareup.picasso:picasso:2.71828")
 
 //    Xu li gui email
 //    implementation("com.sun.mail:android-additional:1.6.6")

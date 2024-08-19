@@ -6,12 +6,29 @@
     tools:context=".fragment.ExamScheduleFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Exam Schedule"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/txtEventToBack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/eventTitle"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:paddingLeft="14dp"
+            android:padding="10dp"
+            android:background="@color/background"/>
+        <ListView
+            android:id="@+id/lvEventsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+
+
 
 </FrameLayout>
