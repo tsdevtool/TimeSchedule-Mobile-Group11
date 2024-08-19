@@ -1,6 +1,7 @@
 package com.example.timeschedule_mobile_group11;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -34,11 +35,18 @@ public class EventActivity extends AppCompatActivity {
         binding = ActivityEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
+
         LoadEvents();
 
     }
 
     private void LoadEvents() {
+        binding.imvPhotoEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

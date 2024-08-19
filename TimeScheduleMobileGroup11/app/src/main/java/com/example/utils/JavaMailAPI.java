@@ -29,7 +29,7 @@ public class JavaMailAPI extends AsyncTask<Void,Void,Void> {
     @Override
     protected Void doInBackground(Void... params) {
         final String username = "sieusml03@gmail.com"; // Địa chỉ email của bạn
-        final String password = "cthu qxhn uvua tirx"; // Mật khẩu của bạn
+        final String password = "ufbr htss mujs vtny"; // Mật khẩu của bạn
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");

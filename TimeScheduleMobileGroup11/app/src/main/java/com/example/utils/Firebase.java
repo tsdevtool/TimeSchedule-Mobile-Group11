@@ -47,6 +47,9 @@ public class Firebase {
     public static final String  COL_EVENT_CLASSROOM_CODE = "classroom_code";
     public static final String  COL_EVENT_STATUS_ID = "statusId";
 
+    public static final String ROLE = "Role";
+    public static final String COL_ROLE_ID = "id";
+    public static final String COL_ROLE_NAME = "name";
 
 
 }

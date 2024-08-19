@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.example.models.Event;
 import com.example.timeschedule_mobile_group11.EventActivity;
+import com.example.timeschedule_mobile_group11.RegisterActivity;
 import com.example.timeschedule_mobile_group11.adapter.EventAdapter;
 
 import com.bumptech.glide.Glide;
@@ -26,8 +28,10 @@ import com.example.timeschedule_mobile_group11.LoginActivity;
 
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.FragmentHomeBinding;
+import com.example.timeschedule_mobile_group11.dialog.AloadingDialog;
 import com.example.timeschedule_mobile_group11.dialog.DialogContact;
 
+import com.example.utils.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -67,6 +71,10 @@ public class HomeFragment extends Fragment {
 
     ProgressDialog progressDialog;
 
+    String role;
+    DatabaseReference userRef;
+    FirebaseUser user;
+    AloadingDialog loading;
 
 
     // TODO: Rename and change types of parameters
@@ -175,6 +183,9 @@ public class HomeFragment extends Fragment {
         // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
         contact = new DialogContact(requireContext());
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference(Firebase.USERS);
+        loading = new AloadingDialog(getContext());
         addEvents();
 
         
@@ -185,6 +196,21 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadNewEvent() {
+        String userId = user.getUid();
+        userRef.child(userId)
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    role = snapshot.child(Firebase.USERS_ROLE_ID).getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -286,13 +312,33 @@ public class HomeFragment extends Fragment {
         binding.imvProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Kết thúc MainActivity
-                getActivity().finish();
-                FirebaseAuth.getInstance().signOut();
-                // Khởi động lại LoginActivity
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                if (role.equals("1")){
+                    loading.show();
+                    Handler handler= new Handler();
+                    Runnable runnable= new Runnable() {
+                        @Override
+                        public void run() {
+
+                            FirebaseAuth.getInstance().signOut();
+
+                            loading.cancel();
+                            Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                            startActivity(intent);
+//                            getActivity().finish();
+
+                        }
+                    };
+                    handler.postDelayed(runnable,2000);
+                }
+                else{
+
+                    FirebaseAuth.getInstance().signOut();
+                    // Khởi động lại LoginActivity
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    getActivity().finish();
+                }
 
             }
         });

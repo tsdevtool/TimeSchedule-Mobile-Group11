@@ -1,5 +1,7 @@
 package com.example.models;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Class implements Serializable {
@@ -48,5 +50,11 @@ public class Class implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return code;
     }
 }
