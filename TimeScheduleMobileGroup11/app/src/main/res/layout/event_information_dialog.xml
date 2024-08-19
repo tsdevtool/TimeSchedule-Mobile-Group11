@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border_dialog_contact"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imvImageEventInformation"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/logo_icon_2"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:id="@+id/txtTitleEventInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DAY LA TIEU DE CUA SU KIEN MA BAN DA DANG KY"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="17dp"
+            android:layout_marginTop="4dp"
+            />
+        <TextView
+            android:id="@+id/txtTimeEventInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20/08/2024"
+            android:textSize="24sp"
+            android:textStyle="italic"
+            android:padding="15dp"
+            android:singleLine="true"
+            android:maxLength="40"
+            android:gravity="right"/>
+        <TextView
+            android:id="@+id/txtDescriptionEventInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Day la thong tin chi tiet su kien, mot thong tin ma ban muon ghi bat ki cai quai quy gi cung duoc\nChuc ban mot ngay tot lanh"
+            android:textSize="24sp"
+            android:padding="15dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Địa điểm tổ chức: "
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="15dp"/>
+            <TextView
+                android:id="@+id/txtLocationEventInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HUTECH"
+                android:textSize="24sp"
+                android:padding="15dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phòng:"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="15dp"/>
+            <TextView
+                android:id="@+id/txtClassroomEventInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="E1.01.02"
+                android:textSize="24sp"
+                android:padding="15dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Câu hỏi bạn đặt cho đọc giả: "
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:padding="15dp"/>
+            <TextView
+                android:id="@+id/txtQuestionEventInformation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No questionajsdlfjuailsdfjia\noiausdfaiusdfoaidfpoaf\nasdifjasldfalksdfjas\n"
+
+                android:textSize="24sp"
+                android:padding="15dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCancelEventInformation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:backgroundTint="@color/red"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+
+</ScrollView>

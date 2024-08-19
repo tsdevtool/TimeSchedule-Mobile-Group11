@@ -1,8 +1,12 @@
 package com.example.timeschedule_mobile_group11.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,15 +14,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.adapters.EventDetailAdapter;
 import com.example.models.Event;
+import com.example.models.EventDetail;
 import com.example.timeschedule_mobile_group11.EventDetailActivity;
 import com.example.timeschedule_mobile_group11.adapter.EventAdapter;
 import com.example.timeschedule_mobile_group11.databinding.ActivityEventBinding;
 import com.example.timeschedule_mobile_group11.databinding.FragmentEventScheduleBinding;
+import com.example.utils.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +43,7 @@ import java.util.List;
 
 
 import com.example.timeschedule_mobile_group11.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,14 +51,6 @@ import com.example.timeschedule_mobile_group11.R;
  * create an instance of this fragment.
  */
 public class EventFragment extends Fragment {
-
-    FragmentEventScheduleBinding binding;
-
-    private DatabaseReference databaseReference;
-    private List<Event> eventList = new ArrayList<>();
-    private ListView listView;
-    private ArrayAdapter<String> arrayAdapter;
-    private List<String> eventTitles = new ArrayList<>();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -85,68 +91,153 @@ public class EventFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        // Khởi tạo kết nối tới Firebase Realtime Database
-        databaseReference = FirebaseDatabase.getInstance().getReference("events");
     }
 
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_event_schedule, container, false);
-//
-//    }
-@Override
-public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                         Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
-    View view = inflater.inflate(R.layout.fragment_event_schedule, container, false);
+    EventDetailAdapter adapter;
+    List<EventDetail> eventDetailList;
+    List<Event> eventList;
 
-    // Thiết lập ListView
-    listView = view.findViewById(R.id.lvEvents);
-    arrayAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, eventTitles);
-    listView.setAdapter(arrayAdapter);
+    FragmentEventScheduleBinding binding;
+    FirebaseUser user;
+    DatabaseReference eventDetailRef, eventRef;
 
-    // Lấy dữ liệu từ Firebase
-    loadDataFromFirebase();
-    // click event
-    // Thiết lập sự kiện click cho ListView
-    listView.setOnItemClickListener((parent, view1, position, id) -> {
-        // Lấy sự kiện được click
-        Event selectedEvent = eventList.get(position);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentEventScheduleBinding.inflate(getLayoutInflater());
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        eventDetailRef = FirebaseDatabase.getInstance().getReference(Firebase.EVENT_DETAIL);
+        eventRef = FirebaseDatabase.getInstance().getReference(Firebase.EVENT);
+        eventDetailList = new ArrayList<>();
+        String id = user.getUid();
+        getEventOfUser(id);
+        showInfomation();
+//        showEvent();
+        return binding.getRoot();
+    }
 
-        // Chuyển đến EventDetailActivity với thông tin chi tiết về sự kiện
-        Intent intent = new Intent(getContext(), EventDetailActivity.class);
-        intent.putExtra("event", selectedEvent);
-        startActivity(intent);
-    });
-
-
-    return view;
-}
-
-    private void loadDataFromFirebase() {
-        databaseReference.addValueEventListener(new ValueEventListener() {
+    private void showInfomation() {
+        binding.lvEventsFragment.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                eventList.clear(); // Xóa dữ liệu cũ
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                EventDetail eventDetail = eventDetailList.get(i);
+                eventRef.child(eventDetail.getEventId()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            Dialog dialog = new Dialog(getContext());
+                            dialog.setContentView(R.layout.event_information_dialog);
 
-                for (DataSnapshot eventSnapshot : dataSnapshot.getChildren()) {
-                    Event event = eventSnapshot.getValue(Event.class);
-                    if (event != null) {
-                        eventList.add(event);
+                            ImageView imvImage  = dialog.findViewById(R.id.imvImageEventInformation);
+                            String imageUrl = snapshot.child(Firebase.COL_EVENT_IMAGE).getValue(String.class);
+                            if (imageUrl != null && !imageUrl.isEmpty()) {
+                                Picasso.get()
+                                        .load(imageUrl)
+                                        .into(imvImage);              // ImageView để hiển thị ảnh
+                            }
+                            TextView txtTitle = dialog.findViewById(R.id.txtTitleEventInformation);
+                            txtTitle.setText(snapshot.child(Firebase.COL_EVENT_TITLE).getValue(String.class));
+
+                            TextView txtTime = dialog.findViewById(R.id.txtTimeEventInformation);
+                            txtTime.setText(snapshot.child(Firebase.COL_EVENT_TIME).getValue(String.class));
+
+                            TextView txtDescription = dialog.findViewById(R.id.txtDescriptionEventInformation);
+                            txtDescription.setText(snapshot.child(Firebase.COL_EVENT_DESCRIPTION).getValue(String.class));
+
+                            TextView txtLocation = dialog.findViewById(R.id.txtLocationEventInformation);
+                            txtLocation.setText(snapshot.child(Firebase.COL_EVENT_LOCATION).getValue(String.class));
+
+                            TextView txtClassroom = dialog.findViewById(R.id.txtClassroomEventInformation);
+                            txtClassroom.setText(snapshot.child(Firebase.COL_EVENT_CLASSROOM_CODE).getValue(String.class));
+
+                            TextView txtQuestion = dialog.findViewById(R.id.txtQuestionEventInformation);
+                            txtQuestion.setText(eventDetail.getQuestion());
+
+                            Button btnBack = dialog.findViewById(R.id.btnCancelEventInformation);
+                            btnBack.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialog.dismiss();
+                                }
+                            });
+                            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                            dialog.show();
+                        }
                     }
-                }
-                // Sử dụng CustomEventAdapter để hiển thị tất cả thông tin của sự kiện
-                CustomEventAdapter adapter = new CustomEventAdapter(getContext(), eventList);
-                listView.setAdapter(adapter);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                // Xử lý lỗi
-                Toast.makeText(getContext(), "Failed to load data.", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        notification(R.string.error);
+                    }
+                });
             }
         });
     }
+
+
+    private void getEventOfUser(String userId) {
+        eventDetailRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    for (DataSnapshot db: snapshot.getChildren()){
+                        EventDetail eventDetail = new EventDetail();
+                        String userEventId = db.child(Firebase.COL_EVENT_DETAIL_USER_ID).getValue(String.class);
+                        if (userEventId.equals(userId)){
+                            eventDetail.setQuestion(db.child(Firebase.COL_EVENT_DETAIL_QUESTION).getValue(String.class));
+                            eventDetail.setUserId(db.child(Firebase.COL_EVENT_DETAIL_USER_ID).getValue(String.class));
+                            eventDetail.setEventId(db.child(Firebase.COL_EVENT_DETAIL_EVENT_ID).getValue(String.class));
+                            eventDetailList.add(eventDetail);
+                        }
+//                        Toast.makeText(getContext(), eventDetail.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                    if(!eventDetailList.isEmpty()){
+                        Toast.makeText(getContext(), "SK", Toast.LENGTH_SHORT).show();
+                        showEventDetailInformation(eventDetailList);
+                    }
+                }else{
+                    notification(R.string.toastNoData);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                notification(R.string.toastNoData);
+            }
+        });
+    }
+
+    private void showEventDetailInformation(List<EventDetail> eventDetailList) {
+        if (adapter == null) {
+            adapter = new EventDetailAdapter(requireContext(), eventDetailList);
+            binding.lvEventsFragment.setAdapter(adapter);
+        } else {
+            adapter.clear();
+            adapter.addAll(eventDetailList);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    private void notification(int notification){
+        Dialog dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.activity_notification_dialog);
+        Button back = dialog.findViewById(R.id.btnBack);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        TextView notificationBody = dialog.findViewById(R.id.txtNotification);
+        notificationBody.setText(notification);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCanceledOnTouchOutside(false);
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
+
+
+
 }
