@@ -63,6 +63,7 @@ public class HomeFragment extends Fragment {
     private OnFragmentInteractionListener listener;
     private DatabaseReference eventsRef;
     private EventAdapter eventAdapter;
+    private CustomEventAdapter customEventAdapter;
 
     ProgressDialog progressDialog;
 
@@ -264,15 +265,15 @@ public class HomeFragment extends Fragment {
         });
 
         // Cập nhật adapter với danh sách sự kiện còn lại
-        if (eventAdapter == null) {
-            eventAdapter = new EventAdapter(requireContext(), eventList);
-            binding.lvEvents.setAdapter(eventAdapter);
+        if (customEventAdapter == null) {
+            customEventAdapter = new CustomEventAdapter(requireContext(), eventList);
+            binding.lvEvents.setAdapter(customEventAdapter);
         } else {
-            eventAdapter.clear();
-            eventAdapter.addAll(eventList);
-            eventAdapter.notifyDataSetChanged();
+            // Nếu adapter đã tồn tại, chỉ cần cập nhật lại dữ liệu
+            customEventAdapter.notifyDataSetChanged();
         }
     }
+
 
     private int getDrawableResourceByName(Context context, String imageName) {
         return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());

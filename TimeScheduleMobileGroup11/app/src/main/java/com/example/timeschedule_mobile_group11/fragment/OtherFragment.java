@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.models.Event;
 import com.example.timeschedule_mobile_group11.EventActivity;
 import com.example.timeschedule_mobile_group11.ProfileActivity;
 import com.example.timeschedule_mobile_group11.R;
@@ -26,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -190,9 +193,6 @@ public class OtherFragment extends Fragment {
         binding.btnSaveEvents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.onImageClickedToEventFragment();
-                }
             }
         });
 
