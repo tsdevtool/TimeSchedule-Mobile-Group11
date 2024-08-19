@@ -39,23 +39,19 @@ public class EventDetailActivity extends AppCompatActivity {
         if (event != null) {
             // Hiển thị dữ liệu sự kiện
             binding.tvEventTitle.setText(event.getTitle());
-            binding.tvClassroomCode.setText(event.getClassroom_code());
+            binding.tvClassroomCode.setText("Phòng: " + event.getClassroom_code());
 
             // Format lại thời gian
-            String formattedTime = formatTime(event.getTime());
+            String formattedTime = "Thời gian: " + formatTime(event.getTime());
             binding.tvEventTime.setText(formattedTime);
 
             binding.tvEventDescription.setText(event.getDescription());
-//            binding.imvEventPhoto.setImageURI(event.getImage());
-
-//            binding.tvLocation.setText(event.getLocation());
-//            binding.tvStatusId.setText(String.valueOf(event.getStatusId()));
-
-            // Load và hiển thị hình ảnh từ URL bằng Picasso
             String imageUrl = event.getImage(); // URL lưu trong Firebase Realtime Database
             if (imageUrl != null && !imageUrl.isEmpty()) {
                 Picasso.get()
                         .load(imageUrl)
+                        .placeholder(R.drawable.img) // Hình ảnh hiển thị trong khi chờ tải
+                        .error(R.drawable.img) // Hình ảnh hiển thị khi xảy ra lỗi
                         .into(binding.imvEventPhoto);              // ImageView để hiển thị ảnh
             }
         }
@@ -65,10 +61,10 @@ public class EventDetailActivity extends AppCompatActivity {
         // Định dạng thời gian gốc từ dữ liệu Firebase (ISO 8601)
         SimpleDateFormat originalFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         // Định dạng thời gian hiển thị cho người dùng bằng tiếng Việt
-        SimpleDateFormat targetFormat = new SimpleDateFormat("dd MMMM yyyy, HH:mm", new Locale("vi", "VN"));
+        SimpleDateFormat outputFormat = new SimpleDateFormat("dd - M - yyyy, HH:mm", new Locale("vi", "VN"));
         try {
             Date date = originalFormat.parse(rawTime);
-            return targetFormat.format(date);
+            return outputFormat.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
             // Nếu không thể parse được, trả về thời gian gốc

@@ -41,49 +41,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         // Initialize Firebase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference eventsRef = database.getReference().child("events"); // Reference to "events" node
-
-//        // Create sample events
-//        Event event1 = new Event(
-//                1,
-//                1,
-//                "E1.03.02",
-//                "2024-08-15T09:00:00",
-//                "image1.png",
-//                "A description for event 1.",
-//                "Event Title 1",
-//                "Location 1"
-//        );
-//
-//        Event event2 = new Event(
-//                2,
-//                2,
-//                "E2.04.03",
-//                "2024-08-16T11:00:00",
-//                "image2.png",
-//                "A description for event 2.",
-//                "Event Title 2",
-//                "Location 2"
-//        );
-//
-//        Event event3 = new Event(
-//                3,
-//                1,
-//                "E3.05.04",
-//                "2024-08-17T14:00:00",
-//                "image3.png",
-//                "A description for event 3.",
-//                "Event Title 3",
-//                "Location 3"
-//        );
-//        eventsRef.child("event1").setValue(event1);
-//        eventsRef.child("event2").setValue(event2);
-//        eventsRef.child("event3").setValue(event3);
-
-
-
-
-
-
         fragmentManager = getSupportFragmentManager();
         bottomNavigationView = binding.bottomNavigationView;
 
@@ -144,6 +101,4 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnFr
         replaceFragment(new OtherFragment());
         bottomNavigationView.setSelectedItemId(R.id.examSchedule);
     }
-
-
 }

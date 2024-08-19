@@ -50,7 +50,9 @@ public class CustomEventAdapter extends ArrayAdapter<Event> {
         String imageUrl = currentEvent.getImage(); // URL lưu trong Firebase Realtime Database
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Picasso.get()
-                    .load(imageUrl)// Ảnh hiển thị khi có lỗi
+                    .load(imageUrl)//
+                    .placeholder(R.drawable.img) // Hình ảnh hiển thị trong khi chờ tải
+                    .error(R.drawable.img) // Hình ảnh hiển thị khi xảy ra lỗi
                     .into(binding.imvLvImage);              // ImageView để hiển thị ảnh
         }
 

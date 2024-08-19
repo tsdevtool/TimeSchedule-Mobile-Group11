@@ -1,20 +1,14 @@
 package com.example.timeschedule_mobile_group11;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.models.Event;
-import com.example.timeschedule_mobile_group11.adapter.EventAdapter;
 import com.example.timeschedule_mobile_group11.databinding.ActivityEventBinding;
+import com.example.timeschedule_mobile_group11.fragment.CustomEventAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,28 +26,16 @@ public class EventActivity extends AppCompatActivity {
 
     ActivityEventBinding binding;
     private DatabaseReference eventsRef;
-    private EventAdapter eventAdapter;
-
+    private CustomEventAdapter customEventAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding= ActivityEventBinding.inflate(getLayoutInflater());
+        binding = ActivityEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
         LoadEvents();
-        addEvents();
-    }
-
-    private void addEvents() {
-        binding.imvPhotoEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private void LoadEvents() {
@@ -69,8 +51,9 @@ public class EventActivity extends AppCompatActivity {
                 }
                 if (!eventList.isEmpty()) {
                     Event latestEvent = getLatestEvent(eventList);
-                    // Hiển thị các sự kiện còn lại vào ListView
-                    showEventsExceptLatest(eventList, latestEvent);
+
+                    // Cập nhật adapter với danh sách sự kiện
+                    showEvents(eventList);
                 } else {
                     Toast.makeText(EventActivity.this, "No events found.", Toast.LENGTH_SHORT).show();
                 }
@@ -102,9 +85,7 @@ public class EventActivity extends AppCompatActivity {
         return latestEvent;
     }
 
-
-
-    private void showEventsExceptLatest(List<Event> eventList, Event latestEvent) {
+    private void showEvents(List<Event> eventList) {
         // Sắp xếp danh sách sự kiện từ mới nhất đến cũ nhất
         Collections.sort(eventList, (e1, e2) -> {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
@@ -118,20 +99,8 @@ public class EventActivity extends AppCompatActivity {
             }
         });
 
-        // Cập nhật adapter với danh sách sự kiện còn lại
-        if (eventAdapter == null) {
-            eventAdapter = new EventAdapter(EventActivity.this, eventList);
-            binding.lvMoreEvents.setAdapter(eventAdapter);
-        } else {
-            eventAdapter.clear();
-            eventAdapter.addAll(eventList);
-            eventAdapter.notifyDataSetChanged();
-        }
-    }
-
-    private int getDrawableResourceByName(Context context, String imageName) {
-        return context.getResources().getIdentifier(imageName, "drawable", context.getPackageName());
-
-
+        // Cập nhật adapter với danh sách sự kiện
+        customEventAdapter = new CustomEventAdapter(EventActivity.this, eventList);
+        binding.lvMoreEvents.setAdapter(customEventAdapter);
     }
 }

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EventDetailActivity">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <!-- Back Arrow and Title -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +35,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="56dp"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -73,24 +75,6 @@
             android:text="Phòng học: E1-02.04"
             android:textSize="22sp" />
 
-        <!-- Start Time -->
-        <TextView
-            android:id="@+id/tvStartTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Lớp học bắt đầu: 9:00 AM"
-            android:textSize="22sp" />
-
-        <!-- Class Code -->
-        <TextView
-            android:id="@+id/tvClassCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Mã lớp học: ABC123"
-            android:textSize="22sp" />
-
         <!-- Event Time -->
         <TextView
             android:id="@+id/tvEventTime"
@@ -99,6 +83,18 @@
             android:layout_marginTop="8dp"
             android:text="Thời gian: 10:00 AM - 12:00 PM"
             android:textSize="22sp" />
+
+        <EditText
+            android:id="@+id/etQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Đặt câu hỏi cho chuyên gia"
+            android:background="@drawable/edit_text_border"
+            android:textSize="22sp"
+            android:padding="10dp"
+            android:inputType="textMultiLine"
+            android:gravity="top|start"/>
 
         <!-- Register Button -->
         <Button
@@ -112,5 +108,7 @@
             android:textColor="#FFFFFF"
             android:textSize="22sp" />
     </LinearLayout>
+</LinearLayout>
 
-</FrameLayout>
+
+</ScrollView>
