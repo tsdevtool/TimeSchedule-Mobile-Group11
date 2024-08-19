@@ -1,5 +1,7 @@
 package com.example.timeschedule_mobile_group11.fragment;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Context;
 
 import android.app.ProgressDialog;
@@ -9,8 +11,10 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +22,10 @@ import android.widget.Toast;
 
 
 import com.example.models.Event;
+import com.example.models.User;
 import com.example.timeschedule_mobile_group11.EventActivity;
+import com.example.timeschedule_mobile_group11.MainActivity;
+import com.example.timeschedule_mobile_group11.RegisterActivity;
 import com.example.timeschedule_mobile_group11.adapter.EventAdapter;
 
 import com.bumptech.glide.Glide;
@@ -26,8 +33,10 @@ import com.example.timeschedule_mobile_group11.LoginActivity;
 
 import com.example.timeschedule_mobile_group11.R;
 import com.example.timeschedule_mobile_group11.databinding.FragmentHomeBinding;
+import com.example.timeschedule_mobile_group11.dialog.AloadingDialog;
 import com.example.timeschedule_mobile_group11.dialog.DialogContact;
 
+import com.example.utils.Firebase;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +74,7 @@ public class HomeFragment extends Fragment {
     private EventAdapter eventAdapter;
     private CustomEventAdapter customEventAdapter;
 
+    String role;
     ProgressDialog progressDialog;
 
 
@@ -167,17 +177,23 @@ public class HomeFragment extends Fragment {
         logout();
     }
 
+    DatabaseReference userRef;
+    FirebaseUser user;
+    AloadingDialog loading;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         // sử dụng requireContext() để lấy Context từ Fragment và truyền nó vào DialogContact.
+
         contact = new DialogContact(requireContext());
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
-        addEvents();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference(Firebase.USERS);
 
-        
+        addEvents();
         loadNewEvent();
         return binding.getRoot();
 
@@ -185,6 +201,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadNewEvent() {
+        userRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    role = snapshot.child(Firebase.USERS_ROLE_ID).getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         eventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -281,21 +310,57 @@ public class HomeFragment extends Fragment {
 
     }
 
+    private static final int REQUEST_CODE_CREATE_EMPLOYEE = 2;
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE_CREATE_EMPLOYEE && resultCode == RESULT_OK) {
+            if (data != null) {
+                String employeeId = data.getStringExtra("EMPLOYEE_ID");
+                if (employeeId != null) {
+                    Toast.makeText(getContext(), "ID nhân viên mới: " + employeeId, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
     private void logout() {
 //        Firebase.loadFirebase();
+
         binding.imvProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (role.equals("1")){
+
+//                    loading.show();
+//                    Handler handler= new Handler();
+//                    Runnable runnable= new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            loading.cancel();
+
+                            getActivity().finish();
+                            Intent intent = new Intent(getActivity(), RegisterActivity.class);
+                            startActivityForResult(intent, REQUEST_CODE_CREATE_EMPLOYEE);
+//
+//                        }
+//                    };
+//                    handler.postDelayed(runnable,2000);
+                }
                 // Kết thúc MainActivity
-                getActivity().finish();
-                FirebaseAuth.getInstance().signOut();
-                // Khởi động lại LoginActivity
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                else{
+                    getActivity().finish();
+                    FirebaseAuth.getInstance().signOut();
+                    // Khởi động lại LoginActivity
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
 //                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                    startActivity(intent);
+                }
 
             }
         });
+
     }
 
     private void showAvatar() {

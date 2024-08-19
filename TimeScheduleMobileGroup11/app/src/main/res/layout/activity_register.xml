@@ -147,41 +147,35 @@
             android:drawableLeft="@drawable/icons_schedule"
             android:drawablePadding="10dp"/>
 
-<!--        <EditText-->
-<!--            android:id="@+id/edtPassword"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:background="@drawable/border_edittext"-->
-<!--            android:hint="Mật khẩu"-->
-<!--            android:padding="15dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textColorHint="@color/white"-->
-<!--            android:textSize="24sp"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:drawableLeft="@drawable/lock_26"-->
-<!--            android:drawableRight="@drawable/eye_26"-->
-<!--            android:drawablePadding="10dp"/>-->
+        <Spinner
+            android:id="@+id/spinner_classes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:padding="15dp"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:gravity="center"
+            />
 
-<!--        <EditText-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:background="@drawable/border_edittext"-->
-<!--            android:hint="Xác thực mật khẩu"-->
-<!--            android:padding="15dp"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textColorHint="@color/white"-->
-<!--            android:textSize="24sp"-->
-<!--            android:singleLine="true"-->
-<!--            android:inputType="textPassword"-->
-<!--            android:drawableLeft="@drawable/lock_26"-->
-<!--            android:drawableRight="@drawable/eye_26"-->
-<!--            android:drawablePadding="10dp"/>-->
+        <Spinner
+            android:id="@+id/spinner_roles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/border_edittext"
+            android:padding="15dp"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:gravity="center"
+            />
 
         <Button
             android:id="@+id/btnRegisterSucess"
@@ -196,7 +190,8 @@
             android:textSize="24sp"
             android:backgroundTint="@color/background"
             app:strokeColor="@color/white"
-            app:strokeWidth="3dp"/>
+            app:strokeWidth="3dp"
+            />
 
     </LinearLayout>
 

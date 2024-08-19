@@ -1,5 +1,7 @@
 package com.example.models;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Class implements Serializable {
@@ -24,6 +26,12 @@ public class Class implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return code;
     }
 
     public String getFacultyId() {

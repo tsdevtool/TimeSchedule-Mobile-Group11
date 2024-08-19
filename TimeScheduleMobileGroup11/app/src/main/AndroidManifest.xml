@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,12 +22,14 @@
         android:theme="@style/Theme.TimeScheduleMobileGroup11"
         tools:targetApi="31">
         <activity
+            android:name=".admin_page.HomeAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".fragment.UserFragment"
             android:exported="false" />
         <activity
             android:name=".EventDetailActivity"
             android:exported="false" />
-        
         <activity
             android:name=".EventActivity"
             android:exported="false" />
@@ -37,7 +38,6 @@
             android:exported="false" />
         <activity
             android:name=".FogotPasswordActivity"
-
             android:exported="false" />
         <activity
             android:name=".ProfileActivity"

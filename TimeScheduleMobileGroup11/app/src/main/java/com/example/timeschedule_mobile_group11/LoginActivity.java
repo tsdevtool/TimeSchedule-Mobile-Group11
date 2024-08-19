@@ -144,7 +144,6 @@ public class LoginActivity extends AppCompatActivity {
                             updateInfomation(email, password);
                             finish();
                             Toast.makeText(LoginActivity.this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-
                         }
                     };
                     handler.postDelayed(runnable,2000);
