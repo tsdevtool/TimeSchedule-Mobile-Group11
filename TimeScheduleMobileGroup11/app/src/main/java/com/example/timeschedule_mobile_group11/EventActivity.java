@@ -33,9 +33,9 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityEventBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         eventsRef = FirebaseDatabase.getInstance().getReference("events");
         LoadEvents();
+
     }
 
     private void LoadEvents() {
