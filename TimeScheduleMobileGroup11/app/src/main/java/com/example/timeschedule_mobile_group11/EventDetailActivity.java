@@ -69,6 +69,12 @@ public class EventDetailActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
+        binding.btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
